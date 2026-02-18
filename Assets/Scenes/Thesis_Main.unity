@@ -221,6 +221,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &198941574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198941576}
+  - component: {fileID: 198941575}
+  m_Layer: 0
+  m_Name: ForestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &198941575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198941574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5131526bcd3c1499b886a6e57001af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForestManager
+  treePrefabs:
+  - {fileID: 1716450459513244082, guid: 02c7e7c5559bdb24789ac0521c75b446, type: 3}
+  - {fileID: 8123663339262387460, guid: 296c4ef90d000e844a6955d841c3d97c, type: 3}
+  - {fileID: 1207250450048664932, guid: 09b7727f96a4a124a9eb1817c85f0f13, type: 3}
+  - {fileID: 2147345358492058744, guid: 0be4427324361194e833fe5994b340e7, type: 3}
+  - {fileID: 5674843408294500729, guid: eb05cd66a0995a745bc27a0231381f41, type: 3}
+  - {fileID: 7032253396850979702, guid: 2b264c69775b7a44984a2067579574ab, type: 3}
+  - {fileID: 974995995248790532, guid: 75cbfcd5a895f5746a2b751a18ebf60a, type: 3}
+  numberOfTrees: 1000
+  mapCenterPoint: {fileID: 1478220333}
+  mapBoundsSize: {x: 900, y: 900}
+--- !u!4 &198941576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198941574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1101,7 @@ MonoBehaviour:
   - {fileID: 1355121364217057826, guid: e0f062d773cf93c4da63f0c30955b4f1, type: 3}
   - {fileID: 7442792240656263180, guid: 7fc5464f41ca63040adde41e3d22b272, type: 3}
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 750, y: 750}
+  mapBoundsSize: {x: 650, y: 650}
   leftTurnPrefab: {fileID: 2611502644018053759, guid: 0c65e110751672940932e679191186fa, type: 3}
   rightTurnPrefab: {fileID: 5408307612148455822, guid: bf5f74f026366124abd5173bc131db6f, type: 3}
   playerCar: {fileID: 1897467788}
@@ -1122,3 +1177,4 @@ SceneRoots:
   - {fileID: 1629164958}
   - {fileID: 497518456}
   - {fileID: 1478220333}
+  - {fileID: 198941576}
