@@ -1046,7 +1046,7 @@ MonoBehaviour:
   - {fileID: 1355121364217057826, guid: e0f062d773cf93c4da63f0c30955b4f1, type: 3}
   - {fileID: 7442792240656263180, guid: 7fc5464f41ca63040adde41e3d22b272, type: 3}
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 1000, y: 1000}
+  mapBoundsSize: {x: 750, y: 750}
   leftTurnPrefab: {fileID: 2611502644018053759, guid: 0c65e110751672940932e679191186fa, type: 3}
   rightTurnPrefab: {fileID: 5408307612148455822, guid: bf5f74f026366124abd5173bc131db6f, type: 3}
   playerCar: {fileID: 1897467788}
