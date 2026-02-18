@@ -6,6 +6,16 @@ public class ThesisRoadSpawner : MonoBehaviour
     [Header("Sequential Road Pattern (ORDER MATTERS)")]
     public List<GameObject> roadSequence;
 
+    [Header("Manual Bounds Protection")]
+    [Tooltip("Create an Empty GameObject in the exact center of your play area and drag it here")]
+    public Transform mapCenterPoint; 
+    [Tooltip("The X (Width) and Y (Length) size of your safe zone. You will see a RED BOX in the scene!")]
+    public Vector2 mapBoundsSize = new Vector2(200f, 200f); 
+    
+    [Header("Emergency Steering Prefabs")]
+    public GameObject leftTurnPrefab;
+    public GameObject rightTurnPrefab;
+
     [Header("References")]
     public Transform playerCar;
     public Camera mainCamera;
@@ -27,7 +37,7 @@ public class ThesisRoadSpawner : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log($"[RoadSpawner][{Time.time:F2}s] AWAKE");
+        if (enableDebugLogs) Debug.Log($"[RoadSpawner][{Time.time:F2}s] AWAKE");
     }
 
     void Start()
@@ -38,7 +48,12 @@ public class ThesisRoadSpawner : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[RoadSpawner] Sequence size = {roadSequence.Count}");
+        if (mapCenterPoint == null)
+        {
+            Debug.LogError("[RoadSpawner] Map Center Point is missing! Please create an Empty GameObject, place it in the middle of the map, and assign it.");
+        }
+
+        if (enableDebugLogs) Debug.Log($"[RoadSpawner] Sequence size = {roadSequence.Count}");
 
         SpawnFirstTile();
 
@@ -56,7 +71,7 @@ public class ThesisRoadSpawner : MonoBehaviour
             if (Vector3.Distance(playerCar.position, Vector3.zero) > 3f)
             {
                 gameStarted = true;
-                Debug.Log($"[RoadSpawner][{Time.time:F2}s] Game started");
+                if (enableDebugLogs) Debug.Log($"[RoadSpawner][{Time.time:F2}s] Game started");
             }
             else
                 return;
@@ -81,7 +96,7 @@ public class ThesisRoadSpawner : MonoBehaviour
         sequenceIndex = 1;
         FinalizeTile(tile);
 
-        Debug.Log($"[SPAWN][{Time.time:F2}s] FIRST → {tile.name}");
+        if (enableDebugLogs) Debug.Log($"[SPAWN][{Time.time:F2}s] FIRST → {tile.name}");
     }
 
     void SpawnNextTile()
@@ -89,15 +104,30 @@ public class ThesisRoadSpawner : MonoBehaviour
         if (sequenceIndex >= roadSequence.Count)
             sequenceIndex = 0;
 
-        GameObject tile = Instantiate(roadSequence[sequenceIndex]);
-        sequenceIndex++;
-
+        GameObject plannedPrefab = roadSequence[sequenceIndex];
+        GameObject tile = Instantiate(plannedPrefab);
         AlignTile(tile);
+
+        if (IsOutOfBounds(tile))
+        {
+            if (enableDebugLogs) Debug.LogWarning("[SPAWN] Out of bounds detected! Triggering emergency turn.");
+            
+            Destroy(tile); 
+
+            GameObject turnPrefab = GetTurnTowardsCenter();
+            
+            tile = Instantiate(turnPrefab);
+            AlignTile(tile);
+        }
+        else
+        {
+            sequenceIndex++;
+        }
+
         FinalizeTile(tile);
 
-        Debug.Log($"[SPAWN][{Time.time:F2}s] NEXT → {tile.name}");
+        if (enableDebugLogs) Debug.Log($"[SPAWN][{Time.time:F2}s] NEXT → {tile.name}");
 
-        // 🔥 HARD CLEANUP: KEEP ONLY 2 TILES
         DestroyAllButLastTwo();
     }
 
@@ -123,6 +153,42 @@ public class ThesisRoadSpawner : MonoBehaviour
         tile.transform.position += offset;
     }
 
+    // ===================== BOUNDS CHECKING =====================
+
+    bool IsOutOfBounds(GameObject tile)
+    {
+        if (mapCenterPoint == null) return false;
+
+        Transform exit = GetChildRecursive(tile.transform, "ExitPoint");
+        Vector3 checkPos = exit != null ? exit.position : tile.transform.position;
+        
+        Vector3 center = mapCenterPoint.position;
+
+        // Calculate the invisible walls based on your custom size
+        float minX = center.x - (mapBoundsSize.x / 2f);
+        float maxX = center.x + (mapBoundsSize.x / 2f);
+        float minZ = center.z - (mapBoundsSize.y / 2f);
+        float maxZ = center.z + (mapBoundsSize.y / 2f);
+
+        if (checkPos.x < minX || checkPos.x > maxX || checkPos.z < minZ || checkPos.z > maxZ)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    GameObject GetTurnTowardsCenter()
+    {
+        if (mapCenterPoint == null) return leftTurnPrefab; 
+
+        Vector3 directionToCenter = (mapCenterPoint.position - previousExitPoint.position).normalized;
+        float crossProductY = Vector3.Cross(previousExitPoint.forward, directionToCenter).y;
+
+        if (crossProductY > 0) return rightTurnPrefab;
+        else return leftTurnPrefab;
+    }
+
     // ===================== HARD DESTROY =====================
 
     void DestroyAllButLastTwo()
@@ -132,8 +198,6 @@ public class ThesisRoadSpawner : MonoBehaviour
             GameObject old = activeTiles[0];
             activeTiles.RemoveAt(0);
             Destroy(old);
-
-            Debug.Log($"[FORCE DESTROY][{Time.time:F2}s] {old.name}");
         }
     }
 
@@ -143,13 +207,24 @@ public class ThesisRoadSpawner : MonoBehaviour
     {
         foreach (Transform child in parent)
         {
-            if (child.name == name)
-                return child;
-
+            if (child.name == name) return child;
             Transform found = GetChildRecursive(child, name);
-            if (found != null)
-                return found;
+            if (found != null) return found;
         }
         return null;
+    }
+
+    // ===================== GIZMOS (THE MAGIC) =====================
+    
+    // This draws a red box in your Scene view so you can visually see the exact boundaries!
+    void OnDrawGizmos()
+    {
+        if (mapCenterPoint != null)
+        {
+            Gizmos.color = Color.red;
+            // Draw a wire cube representing the safe zone. (Height is arbitrary just so you can see it).
+            Vector3 size3D = new Vector3(mapBoundsSize.x, 50f, mapBoundsSize.y);
+            Gizmos.DrawWireCube(mapCenterPoint.position, size3D);
+        }
     }
 }
