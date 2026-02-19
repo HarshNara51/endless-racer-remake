@@ -258,9 +258,9 @@ MonoBehaviour:
   - {fileID: 5674843408294500729, guid: eb05cd66a0995a745bc27a0231381f41, type: 3}
   - {fileID: 7032253396850979702, guid: 2b264c69775b7a44984a2067579574ab, type: 3}
   - {fileID: 974995995248790532, guid: 75cbfcd5a895f5746a2b751a18ebf60a, type: 3}
-  numberOfTrees: 1000
+  numberOfTrees: 10000
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 900, y: 900}
+  mapBoundsSize: {x: 800, y: 800}
 --- !u!4 &198941576
 Transform:
   m_ObjectHideFlags: 0

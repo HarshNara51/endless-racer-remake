@@ -15,33 +15,27 @@ public class ForestManager : MonoBehaviour
         GenerateForest();
     }
 
-    void GenerateForest()
+void GenerateForest()
     {
-        if (treePrefabs.Length == 0 || mapCenterPoint == null) return;
+        if (treePrefabs.Length == 0 || mapCenterPoint == null || Terrain.activeTerrain == null) return;
 
-        // Create an empty folder object in the hierarchy to keep things clean
         GameObject forestContainer = new GameObject("ProceduralForest");
 
         for (int i = 0; i < numberOfTrees; i++)
         {
-            // Pick a random tree from your 7 options
             GameObject randomTree = treePrefabs[Random.Range(0, treePrefabs.Length)];
 
-            // Pick a random X and Z inside your red box
             float randomX = mapCenterPoint.position.x + Random.Range(-mapBoundsSize.x / 2f, mapBoundsSize.x / 2f);
             float randomZ = mapCenterPoint.position.z + Random.Range(-mapBoundsSize.y / 2f, mapBoundsSize.y / 2f);
 
-            // Raycast down to find the exact height of the terrain at that spot
-            Vector3 rayStart = new Vector3(randomX, 1000f, randomZ);
-            if (Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, 2000f))
-            {
-                // Spawn the tree at the terrain height
-                Vector3 spawnPos = hit.point;
-                GameObject newTree = Instantiate(randomTree, spawnPos, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
-                
-                // Put it in the folder
-                newTree.transform.SetParent(forestContainer.transform);
-            }
+            // MAGIC FIX: Ask the Terrain exactly what its height is here!
+            float terrainY = Terrain.activeTerrain.SampleHeight(new Vector3(randomX, 0, randomZ)) 
+                             + Terrain.activeTerrain.transform.position.y;
+
+            Vector3 spawnPos = new Vector3(randomX, terrainY, randomZ);
+            GameObject newTree = Instantiate(randomTree, spawnPos, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+            
+            newTree.transform.SetParent(forestContainer.transform);
         }
     }
 }
