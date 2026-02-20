@@ -221,6 +221,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &157676025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157676026}
+  - component: {fileID: 157676027}
+  m_Layer: 0
+  m_Name: GrassManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157676026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157676025}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -335.0913, y: -5.7498, z: -588.57184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683266941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &157676027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157676025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5131526bcd3c1499b886a6e57001af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForestManager
+  treePrefabs:
+  - {fileID: 1044626128322074540, guid: d97d6c4affd1c64448f84157f5351a03, type: 3}
+  numberOfTrees: 50000
+  mapCenterPoint: {fileID: 1478220333}
+  mapBoundsSize: {x: 800, y: 800}
 --- !u!1 &198941574
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +306,7 @@ MonoBehaviour:
   - {fileID: 2147345358492058744, guid: 0be4427324361194e833fe5994b340e7, type: 3}
   - {fileID: 5674843408294500729, guid: eb05cd66a0995a745bc27a0231381f41, type: 3}
   - {fileID: 7032253396850979702, guid: 2b264c69775b7a44984a2067579574ab, type: 3}
+  - {fileID: 974995995248790532, guid: 75cbfcd5a895f5746a2b751a18ebf60a, type: 3}
   - {fileID: 974995995248790532, guid: 75cbfcd5a895f5746a2b751a18ebf60a, type: 3}
   numberOfTrees: 10000
   mapCenterPoint: {fileID: 1478220333}
@@ -705,6 +755,7 @@ Transform:
   - {fileID: 198941576}
   - {fileID: 1164433026}
   - {fileID: 314861869}
+  - {fileID: 157676026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961739749
