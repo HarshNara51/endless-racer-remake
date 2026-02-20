@@ -464,6 +464,60 @@ MonoBehaviour:
   - {fileID: 1978502208}
   wheelSpinSpeed: 100
   speedometerText: {fileID: 0}
+--- !u!1 &314861867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314861869}
+  - component: {fileID: 314861868}
+  m_Layer: 0
+  m_Name: RockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &314861868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314861867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5131526bcd3c1499b886a6e57001af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForestManager
+  treePrefabs:
+  - {fileID: 100000, guid: 7b6cd4c94083d3445be27f7e58165a63, type: 3}
+  - {fileID: 100000, guid: fb7d81eebe7ca554ab582add1c7438ce, type: 3}
+  - {fileID: 100000, guid: d59b72f247de0aa41b1eb4820f47fea7, type: 3}
+  - {fileID: 100000, guid: cd676caed5fc5ea44a18c9bef8922efb, type: 3}
+  - {fileID: 100000, guid: e4ea8931e1dbeb34bb3b43ac6e779fe8, type: 3}
+  - {fileID: 100000, guid: 28acee389b24c19468b74a6f7964cb9b, type: 3}
+  numberOfTrees: 100
+  mapCenterPoint: {fileID: 1478220333}
+  mapBoundsSize: {x: 800, y: 800}
+--- !u!4 &314861869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314861867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.3292, y: -0, z: 49.0751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &497518453
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,8 +775,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1164433026}
+  - component: {fileID: 1164433027}
   m_Layer: 0
-  m_Name: PropManager
+  m_Name: BuildingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,6 +798,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1164433027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164433025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5131526bcd3c1499b886a6e57001af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForestManager
+  treePrefabs:
+  - {fileID: 4035258303889830069, guid: a2af9cc12e727de4eb3db71e8d868a9f, type: 3}
+  - {fileID: 3498386369444095148, guid: 782ff2b6e0ca5f04ab8da15fa83a2981, type: 3}
+  - {fileID: 6978084681429252925, guid: 38c325fda12f2e04b9e4288df1812301, type: 3}
+  - {fileID: 1617214717798684933, guid: 5d55a77bd64139545b2e0509b578af0d, type: 3}
+  - {fileID: 148315663865647869, guid: a65c0303057e9514297ed7ce8d9f1d5c, type: 3}
+  numberOfTrees: 50
+  mapCenterPoint: {fileID: 1478220333}
+  mapBoundsSize: {x: 800, y: 800}
 --- !u!1 &1410188229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,3 +1286,4 @@ SceneRoots:
   - {fileID: 1478220333}
   - {fileID: 198941576}
   - {fileID: 1164433026}
+  - {fileID: 314861869}
