@@ -5,12 +5,13 @@ public class ThesisCarController : MonoBehaviour
 {
     [Header("Engine Specs")]
     public float maxSpeed = 80f;        
-    public float acceleration = 30f;    
-    public float friction = 10f;        
-    public float brakePower = 50f;      
+    public float acceleration = 25f; // Slightly lowered for more "weight"
+    public float friction = 5f;      // Lowered so the car rolls more
+    public float brakePower = 40f;      
 
-    [Header("Handling")]
-    public float turnSpeed = 100f;      
+    [Header("Handling (Difficulty Tuned)")]
+    public float turnSpeed = 90f;      
+    public float highSpeedSteerDropoff = 0.5f; // How much steering you lose at max speed
     public float gravity = 20f;         
     public float stickToRoadForce = 10f; 
     
@@ -25,16 +26,12 @@ public class ThesisCarController : MonoBehaviour
     [Header("Detailed Lighting")]
     public MeshRenderer headlightMesh;
     public int headlightMatIndex = 0;
-    
     public MeshRenderer brakeLightMesh;
     public int brakeLightMatIndex = 1; 
-    
     public MeshRenderer leftSignalMesh;
     public int leftSignalMatIndex = 0;
-    
     public MeshRenderer rightSignalMesh;
     public int rightSignalMatIndex = 0;
-
     public MeshRenderer reverseLightMesh;
     public int reverseLightMatIndex = 0;
 
@@ -46,16 +43,15 @@ public class ThesisCarController : MonoBehaviour
     [ColorUsage(true, true)] public Color signalOffColor = new Color(0.2f, 0.1f, 0f);
     [ColorUsage(true, true)] public Color signalOnColor = new Color(4f, 1.5f, 0f);
     [ColorUsage(true, true)] public Color reverseLightOffColor = new Color(0.1f, 0.1f, 0.1f);
-    [ColorUsage(true, true)] public Color reverseLightOnColor = new Color(3f, 3f, 3f); // Bright White!
+    [ColorUsage(true, true)] public Color reverseLightOnColor = new Color(3f, 3f, 3f);
 
     [Header("UI")]
     public TMP_Text speedometerText;
 
-    // Internal Variables
     private float currentSpeed = 0f;
     private float verticalVelocity = 0f; 
+    private float steerLerp = 0f; // For smoother, "heavier" steering
 
-    // Cached Materials
     private Material headLightMat;
     private Material brakeMat;
     private Material leftSignalMat;
@@ -91,6 +87,7 @@ public class ThesisCarController : MonoBehaviour
         else if (gasInput < 0) currentSpeed += brakePower * gasInput * Time.deltaTime;
         else
         {
+            // Natural coasting - takes longer to stop now
             if (currentSpeed > 0) currentSpeed -= friction * Time.deltaTime;
             else if (currentSpeed < 0) currentSpeed += friction * Time.deltaTime;
             
@@ -105,9 +102,18 @@ public class ThesisCarController : MonoBehaviour
         if (Mathf.Abs(currentSpeed) > 0.1f)
         {
             float turnInput = Input.GetAxis("Horizontal"); 
-            float direction = currentSpeed > 0 ? 1 : -1;
             
-            transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime * direction);
+            // --- DIFFICULTY LOGIC ---
+            // 1. Understeer: Calculate how fast we are going relative to max speed
+            float speedFactor = Mathf.Abs(currentSpeed) / maxSpeed;
+            // Steering becomes less effective the faster you go
+            float dynamicTurnSpeed = turnSpeed * Mathf.Lerp(1.0f, highSpeedSteerDropoff, speedFactor);
+            
+            // 2. Steering Lag: Makes the car feel "heavy" instead of a toy
+            steerLerp = Mathf.Lerp(steerLerp, turnInput, Time.deltaTime * 5f);
+            
+            float direction = currentSpeed > 0 ? 1 : -1;
+            transform.Rotate(Vector3.up * steerLerp * dynamicTurnSpeed * Time.deltaTime * direction);
         }
     }
 
@@ -149,14 +155,12 @@ public class ThesisCarController : MonoBehaviour
         float gasInput = Input.GetAxis("Vertical");
         float turnInput = Input.GetAxis("Horizontal");
 
-        // 1. Brake Lights
         if (brakeMat != null)
         {
             if (gasInput < 0) brakeMat.SetColor("_EmissionColor", tailLightBrakeColor);
             else brakeMat.SetColor("_EmissionColor", tailLightIdleColor);
         }
 
-        // 2. Turn Signals 
         bool isBlinking = Mathf.Sin(Time.time * signalBlinkSpeed) > 0;
 
         if (leftSignalMat != null)
@@ -171,10 +175,8 @@ public class ThesisCarController : MonoBehaviour
             else rightSignalMat.SetColor("_EmissionColor", signalOffColor);
         }
 
-        // 3. Reverse Lights
         if (reverseLightMat != null)
         {
-            // If the car is physically moving backward, turn on the bright white lights!
             if (currentSpeed < -0.1f) reverseLightMat.SetColor("_EmissionColor", reverseLightOnColor);
             else reverseLightMat.SetColor("_EmissionColor", reverseLightOffColor);
         }
