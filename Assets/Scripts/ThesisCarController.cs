@@ -5,23 +5,26 @@ public class ThesisCarController : MonoBehaviour
 {
     [Header("Engine Specs")]
     public float maxSpeed = 80f;        
-    public float acceleration = 25f; // Slightly lowered for more "weight"
-    public float friction = 5f;      // Lowered so the car rolls more
-    public float brakePower = 40f;      
+    public float acceleration = 25f; 
+    public float autoSpeedIncrease = 0.2f; 
+    public float friction = 5f;      
+    public float brakePower = 35f;      
+    public float handbrakePower = 60f; 
 
-    [Header("Handling (Difficulty Tuned)")]
-    public float turnSpeed = 90f;      
-    public float highSpeedSteerDropoff = 0.5f; // How much steering you lose at max speed
+    [Header("Handling (Adjust these for difficulty!)")]
+    public float turnSpeed = 70f;      // Lower = Harder
+    public float highSpeedSteerDropoff = 0.3f; // Lower = Harder at high speeds
+    public float steerResponsiveness = 5f; // Lower = "Heavier" steering feel
+    public float maxSteerAngle = 30f; 
     public float gravity = 20f;         
     public float stickToRoadForce = 10f; 
     
-    [Header("Suspension")]
-    public float rideHeightOffset = 0.5f; 
-    public float raycastLength = 3.0f;    
-
-    [Header("Visuals")]
-    public Transform[] wheels;          
+    [Header("Visual Wheels")]
+    public Transform[] frontWheels;  
+    public Transform[] backWheels;   
     public float wheelSpinSpeed = 100f;
+    public float raycastLength = 3.0f;
+    public float rideHeightOffset = 0.5f;
 
     [Header("Detailed Lighting")]
     public MeshRenderer headlightMesh;
@@ -34,7 +37,6 @@ public class ThesisCarController : MonoBehaviour
     public int rightSignalMatIndex = 0;
     public MeshRenderer reverseLightMesh;
     public int reverseLightMatIndex = 0;
-
     public float signalBlinkSpeed = 15f; 
 
     [ColorUsage(true, true)] public Color headlightOnColor = new Color(2f, 2f, 1.8f);
@@ -49,8 +51,11 @@ public class ThesisCarController : MonoBehaviour
     public TMP_Text speedometerText;
 
     private float currentSpeed = 0f;
-    private float verticalVelocity = 0f; 
-    private float steerLerp = 0f; // For smoother, "heavier" steering
+    private float steerLerp = 0f;
+    private float wheelRotationAmount = 0f; // Track total rotation for wheels
+    private float verticalVelocity = 0f;
+    private bool isGameOver = false;
+    private bool isHandbraking = false;
 
     private Material headLightMat;
     private Material brakeMat;
@@ -71,27 +76,44 @@ public class ThesisCarController : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver) return;
+
+        isHandbraking = Input.GetKey(KeyCode.Space);
+
+        HandleInfiniteSpeed();
         HandleEngine();
         HandleSteering();
         ApplyPhysics();
-        AnimateVisuals();
+        AnimateWheels();
         HandleLighting(); 
         UpdateUI();
+    }
+
+    void HandleInfiniteSpeed()
+    {
+        maxSpeed += autoSpeedIncrease * Time.deltaTime; 
+        currentSpeed += (autoSpeedIncrease * 0.5f) * Time.deltaTime;
     }
 
     void HandleEngine()
     {
         float gasInput = Input.GetAxis("Vertical"); 
 
-        if (gasInput > 0) currentSpeed += acceleration * gasInput * Time.deltaTime;
-        else if (gasInput < 0) currentSpeed += brakePower * gasInput * Time.deltaTime;
+        if (isHandbraking)
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, handbrakePower * Time.deltaTime);
+        }
+        else if (gasInput < 0)
+        {
+            currentSpeed += brakePower * gasInput * Time.deltaTime;
+        }
+        else if (gasInput > 0)
+        {
+            currentSpeed += acceleration * gasInput * Time.deltaTime;
+        }
         else
         {
-            // Natural coasting - takes longer to stop now
-            if (currentSpeed > 0) currentSpeed -= friction * Time.deltaTime;
-            else if (currentSpeed < 0) currentSpeed += friction * Time.deltaTime;
-            
-            if(Mathf.Abs(currentSpeed) < 1f) currentSpeed = 0;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, friction * Time.deltaTime);
         }
 
         currentSpeed = Mathf.Clamp(currentSpeed, -30f, maxSpeed);
@@ -102,15 +124,13 @@ public class ThesisCarController : MonoBehaviour
         if (Mathf.Abs(currentSpeed) > 0.1f)
         {
             float turnInput = Input.GetAxis("Horizontal"); 
-            
-            // --- DIFFICULTY LOGIC ---
-            // 1. Understeer: Calculate how fast we are going relative to max speed
             float speedFactor = Mathf.Abs(currentSpeed) / maxSpeed;
-            // Steering becomes less effective the faster you go
+            
+            // Steering gets exponentially weaker at high speeds
             float dynamicTurnSpeed = turnSpeed * Mathf.Lerp(1.0f, highSpeedSteerDropoff, speedFactor);
             
-            // 2. Steering Lag: Makes the car feel "heavy" instead of a toy
-            steerLerp = Mathf.Lerp(steerLerp, turnInput, Time.deltaTime * 5f);
+            // How fast the steering "reacts" to key presses
+            steerLerp = Mathf.Lerp(steerLerp, turnInput, Time.deltaTime * steerResponsiveness);
             
             float direction = currentSpeed > 0 ? 1 : -1;
             transform.Rotate(Vector3.up * steerLerp * dynamicTurnSpeed * Time.deltaTime * direction);
@@ -138,15 +158,24 @@ public class ThesisCarController : MonoBehaviour
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
     }
 
-    void AnimateVisuals()
+    void AnimateWheels()
     {
-        if (wheels != null)
+        // Track the cumulative rotation to keep spinning consistent
+        wheelRotationAmount += currentSpeed * wheelSpinSpeed * Time.deltaTime;
+        float visualSteerAngle = steerLerp * maxSteerAngle;
+
+        foreach (Transform wheel in frontWheels)
         {
-            float spin = currentSpeed * wheelSpinSpeed * Time.deltaTime;
-            foreach (Transform wheel in wheels)
-            {
-                if(wheel != null) wheel.Rotate(Vector3.right, spin);
-            }
+            if (wheel == null) continue;
+            // First apply the steering (Y), then the accumulated spin (X)
+            wheel.localRotation = Quaternion.Euler(wheelRotationAmount, visualSteerAngle, 0);
+        }
+
+        foreach (Transform wheel in backWheels)
+        {
+            if (wheel == null) continue;
+            // Back wheels only need the spin
+            wheel.localRotation = Quaternion.Euler(wheelRotationAmount, 0, 0);
         }
     }
 
@@ -157,7 +186,7 @@ public class ThesisCarController : MonoBehaviour
 
         if (brakeMat != null)
         {
-            if (gasInput < 0) brakeMat.SetColor("_EmissionColor", tailLightBrakeColor);
+            if (gasInput < 0 || isHandbraking) brakeMat.SetColor("_EmissionColor", tailLightBrakeColor);
             else brakeMat.SetColor("_EmissionColor", tailLightIdleColor);
         }
 
