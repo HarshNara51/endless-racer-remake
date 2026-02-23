@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &497295601463864257
+--- !u!1 &113533295374807060
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6474832092368019229}
-  - component: {fileID: 3336349390956002867}
+  - component: {fileID: 4806867144745455649}
+  - component: {fileID: 6794785354566895754}
+  m_Layer: 2
+  m_Name: VegetationCleaner (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 64
+  m_IsActive: 1
+--- !u!4 &4806867144745455649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113533295374807060}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.4989764, z: -0, w: 0.8666156}
+  m_LocalPosition: {x: -15.173332, y: -0.030000865, z: 8.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2602441879455638346}
+  m_LocalEulerAnglesHint: {x: 0, y: -59.865, z: 0}
+--- !u!65 &6794785354566895754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113533295374807060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &844817728702442533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7559816711402843986}
+  - component: {fileID: 1327005769984744731}
   m_Layer: 2
   m_Name: VegetationCleaner (8)
   m_TagString: Untagged
@@ -17,28 +70,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &6474832092368019229
+--- !u!4 &7559816711402843986
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497295601463864257}
+  m_GameObject: {fileID: 844817728702442533}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.2653246, z: -0, w: 0.9641592}
-  m_LocalPosition: {x: -13.506667, y: -0.030000865, z: 4.0229993}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -13.533333, y: -0.030000865, z: 3.9750001}
+  m_LocalScale: {x: 1, y: 1, z: 1.1653001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
   m_LocalEulerAnglesHint: {x: 0, y: 30.773, z: 0}
---- !u!65 &3336349390956002867
+--- !u!65 &1327005769984744731
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497295601463864257}
+  m_GameObject: {fileID: 844817728702442533}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -52,6 +105,59 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.5, y: 3, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2848946797293122199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247715625327939700}
+  - component: {fileID: 1182609079738060833}
+  m_Layer: 2
+  m_Name: VegetationCleaner (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 64
+  m_IsActive: 1
+--- !u!4 &247715625327939700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848946797293122199}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.5270012, z: -0, w: 0.8498646}
+  m_LocalPosition: {x: -9.553332, y: -0.030000865, z: 8.787002}
+  m_LocalScale: {x: 1.3115004, y: 1, z: 1.0943998}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2602441879455638346}
+  m_LocalEulerAnglesHint: {x: 0, y: -63.606, z: 0}
+--- !u!65 &1182609079738060833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848946797293122199}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3216391135904562705
 GameObject:
@@ -84,165 +190,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4691052162973358370}
   m_LocalEulerAnglesHint: {x: 0, y: 270.728, z: 0}
---- !u!1 &3378408488162433701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6445196856331780904}
-  - component: {fileID: 3702628364490807066}
-  m_Layer: 2
-  m_Name: VegetationCleaner (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
-  m_IsActive: 1
---- !u!4 &6445196856331780904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3378408488162433701}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7615333, z: -0, w: 0.6481258}
-  m_LocalPosition: {x: -20.526667, y: -0.030000865, z: 1.5850008}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: -99.199, z: 0}
---- !u!65 &3702628364490807066
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3378408488162433701}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.5, y: 3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &3410844813996936096
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1935475453223381733}
-  - component: {fileID: 973038923397771237}
-  m_Layer: 2
-  m_Name: VegetationCleaner (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
-  m_IsActive: 1
---- !u!4 &1935475453223381733
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410844813996936096}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.23310106, z: -0, w: 0.9724526}
-  m_LocalPosition: {x: -18.066668, y: -0.030000865, z: 4.3250003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: -26.959, z: 0}
---- !u!65 &973038923397771237
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3410844813996936096}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 3, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &3565852864800966136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7203226876915997265}
-  - component: {fileID: 8183951227612847368}
-  m_Layer: 2
-  m_Name: VegetationCleaner (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
-  m_IsActive: 1
---- !u!4 &7203226876915997265
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3565852864800966136}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.4989764, z: -0, w: 0.8666156}
-  m_LocalPosition: {x: -15.146667, y: -0.030000865, z: 8.647999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: -59.865, z: 0}
---- !u!65 &8183951227612847368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3565852864800966136}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3669897086657256204
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +221,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4691052162973358370}
   m_LocalEulerAnglesHint: {x: 0, y: 0.997, z: 0}
---- !u!1 &3676979643957889678
+--- !u!1 &4216450496961073079
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,37 +229,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8407659644946304671}
-  - component: {fileID: 5218287109116694595}
+  - component: {fileID: 9157251231236694497}
+  - component: {fileID: 6936632865382345374}
   m_Layer: 2
-  m_Name: VegetationCleaner
+  m_Name: VegetationCleaner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &8407659644946304671
+--- !u!4 &9157251231236694497
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3676979643957889678}
+  m_GameObject: {fileID: 4216450496961073079}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.283334, y: -0.030000865, z: -0.058333334}
+  m_LocalRotation: {x: -0, y: -0.70000166, z: -0, w: 0.7141413}
+  m_LocalPosition: {x: -17.713331, y: -0.030000865, z: 7.6620016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5218287109116694595
+  m_LocalEulerAnglesHint: {x: 0, y: -88.854, z: 0}
+--- !u!65 &6936632865382345374
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3676979643957889678}
+  m_GameObject: {fileID: 4216450496961073079}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -325,9 +272,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 3, z: 1}
+  m_Size: {x: 1.5, y: 3, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5586306956547312666
+--- !u!1 &5201232438513617802
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,8 +282,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5088996038312753045}
-  - component: {fileID: 6817251150593098008}
+  - component: {fileID: 1441640259721106046}
+  - component: {fileID: 3308871709442796773}
   m_Layer: 2
   m_Name: VegetationCleaner (1)
   m_TagString: Untagged
@@ -344,28 +291,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &5088996038312753045
+--- !u!4 &1441640259721106046
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5586306956547312666}
+  m_GameObject: {fileID: 5201232438513617802}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.556665, y: -0.030000865, z: 12.434999}
+  m_LocalPosition: {x: -20.583332, y: -0.030000865, z: 12.387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6817251150593098008
+--- !u!65 &3308871709442796773
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5586306956547312666}
+  m_GameObject: {fileID: 5201232438513617802}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -380,7 +327,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5705752269124469605
+--- !u!1 &5646543129120357017
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,37 +335,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4580823956019703838}
-  - component: {fileID: 2092536104637666927}
+  - component: {fileID: 3009695295638027578}
+  - component: {fileID: 5203311876222020600}
   m_Layer: 2
-  m_Name: VegetationCleaner (4)
+  m_Name: VegetationCleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &4580823956019703838
+--- !u!4 &3009695295638027578
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5705752269124469605}
+  m_GameObject: {fileID: 5646543129120357017}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.70000166, z: -0, w: 0.7141413}
-  m_LocalPosition: {x: -17.686665, y: -0.030000865, z: 7.7100005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.063332, y: -0.030000865, z: -0.14000034}
+  m_LocalScale: {x: 1.0533, y: 1, z: 1.3894324}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: -88.854, z: 0}
---- !u!65 &2092536104637666927
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5203311876222020600
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5705752269124469605}
+  m_GameObject: {fileID: 5646543129120357017}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -431,7 +378,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 3, z: 5}
+  m_Size: {x: 20, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6158299912783985520
 GameObject:
@@ -467,15 +414,15 @@ Transform:
   m_LocalScale: {x: 6, y: 1, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8407659644946304671}
-  - {fileID: 5088996038312753045}
-  - {fileID: 5441722770816633646}
-  - {fileID: 2885580916699563691}
-  - {fileID: 4580823956019703838}
-  - {fileID: 7203226876915997265}
-  - {fileID: 1935475453223381733}
-  - {fileID: 6445196856331780904}
-  - {fileID: 6474832092368019229}
+  - {fileID: 3009695295638027578}
+  - {fileID: 1441640259721106046}
+  - {fileID: 4157586804330151612}
+  - {fileID: 247715625327939700}
+  - {fileID: 9157251231236694497}
+  - {fileID: 4806867144745455649}
+  - {fileID: 6831221405032784935}
+  - {fileID: 1642709373294150558}
+  - {fileID: 7559816711402843986}
   m_Father: {fileID: 4691052162973358370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4427647918749598711
@@ -596,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd053f55b981cb4d97b02c39ead6d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadVegetationClearer
---- !u!1 &6620129521146850199
+--- !u!1 &6358051043179718016
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,37 +551,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2885580916699563691}
-  - component: {fileID: 476286888143227761}
+  - component: {fileID: 1642709373294150558}
+  - component: {fileID: 165560732830203447}
   m_Layer: 2
-  m_Name: VegetationCleaner (3)
+  m_Name: VegetationCleaner (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &2885580916699563691
+--- !u!4 &1642709373294150558
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6620129521146850199}
+  m_GameObject: {fileID: 6358051043179718016}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.5270012, z: -0, w: 0.8498646}
-  m_LocalPosition: {x: -9.486668, y: -0.030000865, z: 8.735}
+  m_LocalRotation: {x: -0, y: -0.7615333, z: -0, w: 0.6481258}
+  m_LocalPosition: {x: -20.553333, y: -0.030000865, z: 1.5370016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
-  m_LocalEulerAnglesHint: {x: 0, y: -63.606, z: 0}
---- !u!65 &476286888143227761
+  m_LocalEulerAnglesHint: {x: 0, y: -99.199, z: 0}
+--- !u!65 &165560732830203447
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6620129521146850199}
+  m_GameObject: {fileID: 6358051043179718016}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -647,7 +594,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 3, z: 9}
+  m_Size: {x: 3.5, y: 3, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7442792240656263180
 GameObject:
@@ -712,7 +659,7 @@ MonoBehaviour:
   obstaclePrefabs: []
   spawnPoints: []
   spawnChance: 0.3
---- !u!1 &7848126834195712785
+--- !u!1 &8778716380437786287
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,8 +667,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5441722770816633646}
-  - component: {fileID: 7878995771040150672}
+  - component: {fileID: 4157586804330151612}
+  - component: {fileID: 7628201559602404261}
   m_Layer: 2
   m_Name: VegetationCleaner (2)
   m_TagString: Untagged
@@ -729,28 +676,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
---- !u!4 &5441722770816633646
+--- !u!4 &4157586804330151612
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7848126834195712785}
+  m_GameObject: {fileID: 8778716380437786287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.31262794, z: -0, w: 0.94987565}
-  m_LocalPosition: {x: -6.6866646, y: -0.030000865, z: 5.115}
+  m_LocalPosition: {x: -6.7133307, y: -0.030000865, z: 5.0670004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2602441879455638346}
   m_LocalEulerAnglesHint: {x: 0, y: 36.435, z: 0}
---- !u!65 &7878995771040150672
+--- !u!65 &7628201559602404261
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7848126834195712785}
+  m_GameObject: {fileID: 8778716380437786287}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -764,4 +711,57 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 3, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &9097757999688954051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6831221405032784935}
+  - component: {fileID: 6800874279584417720}
+  m_Layer: 2
+  m_Name: VegetationCleaner (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 64
+  m_IsActive: 1
+--- !u!4 &6831221405032784935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097757999688954051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.23310106, z: -0, w: 0.9724526}
+  m_LocalPosition: {x: -18.293333, y: -0.030000865, z: 4.077}
+  m_LocalScale: {x: 1.1348007, y: 1, z: 1.5279148}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2602441879455638346}
+  m_LocalEulerAnglesHint: {x: 0, y: -26.959, z: 0}
+--- !u!65 &6800874279584417720
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097757999688954051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
