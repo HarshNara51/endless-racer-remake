@@ -459,6 +459,8 @@ GameObject:
   m_Component:
   - component: {fileID: 232036097}
   - component: {fileID: 232036098}
+  - component: {fileID: 232036100}
+  - component: {fileID: 232036099}
   m_Layer: 0
   m_Name: Player_Car_Root
   m_TagString: Player
@@ -489,26 +491,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232036096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3b5baa15bd05fa4c9c10e3dad41d729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThesisCarController
   maxSpeed: 40
   acceleration: 30
+  autoSpeedIncrease: 0.2
   friction: 10
   brakePower: 50
+  handbrakePower: 60
   turnSpeed: 100
+  highSpeedSteerDropoff: 0.3
+  steerResponsiveness: 5
+  maxSteerAngle: 30
   gravity: 20
   stickToRoadForce: 10
-  rideHeightOffset: 0.5
-  raycastLength: 3
-  wheels:
+  frontWheels:
   - {fileID: 1658658394}
   - {fileID: 2076768620}
-  - {fileID: 1681456954}
+  backWheels:
   - {fileID: 1978502208}
+  - {fileID: 1681456954}
   wheelSpinSpeed: 100
+  raycastLength: 3
+  rideHeightOffset: 0.5
   headlightMesh: {fileID: 246573674}
   headlightMatIndex: 0
   brakeLightMesh: {fileID: 358031520}
@@ -526,6 +534,66 @@ MonoBehaviour:
   signalOffColor: {r: 0.19607845, g: 0.8745099, b: 1, a: 1}
   signalOnColor: {r: 4, g: 1.5, b: 0, a: 1}
   reverseLightOffColor: {r: 0.10588236, g: 1, b: 0.14901961, a: 1}
+  reverseLightOnColor: {r: 3, g: 3, b: 3, a: 1}
+  speedometerText: {fileID: 1410188231}
+--- !u!114 &232036099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232036096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b143aeb76e3ba4440bd0db587d45bc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarDifficultySwitcher
+  easyScript: {fileID: 232036100}
+  hardScript: {fileID: 232036098}
+--- !u!114 &232036100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232036096}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb6f1d5a19203c46b6bd1e0ed8e8158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EasyCarController
+  maxSpeed: 80
+  acceleration: 30
+  friction: 10
+  brakePower: 50
+  turnSpeed: 100
+  gravity: 20
+  stickToRoadForce: 10
+  rideHeightOffset: 0.5
+  raycastLength: 3
+  wheels:
+  - {fileID: 1658658394}
+  - {fileID: 2076768620}
+  - {fileID: 1978502208}
+  - {fileID: 1681456954}
+  wheelSpinSpeed: 100
+  headlightMesh: {fileID: 246573674}
+  headlightMatIndex: 0
+  brakeLightMesh: {fileID: 358031520}
+  brakeLightMatIndex: 1
+  leftSignalMesh: {fileID: 1020030113}
+  leftSignalMatIndex: 0
+  rightSignalMesh: {fileID: 1020030113}
+  rightSignalMatIndex: 0
+  reverseLightMesh: {fileID: 2105618726}
+  reverseLightMatIndex: 0
+  signalBlinkSpeed: 15
+  headlightOnColor: {r: 2.670157, g: 2.670157, b: 0.43979058, a: 1}
+  tailLightIdleColor: {r: 0.69803923, g: 0.101960786, b: 0.10980392, a: 1}
+  tailLightBrakeColor: {r: 1.340314, g: 0, b: 0, a: 1}
+  signalOffColor: {r: 0.19607843, g: 0.8745098, b: 1, a: 1}
+  signalOnColor: {r: 4, g: 1.5, b: 0, a: 1}
+  reverseLightOffColor: {r: 0.105882354, g: 1, b: 0.14901961, a: 1}
   reverseLightOnColor: {r: 3, g: 3, b: 3, a: 1}
   speedometerText: {fileID: 1410188231}
 --- !u!23 &246573674 stripped
