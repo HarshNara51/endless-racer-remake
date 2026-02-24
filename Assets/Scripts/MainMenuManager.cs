@@ -1,64 +1,93 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro; // Using TextMeshPro for the best looking text
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Selection State")]
-    private string selectedLevel = ""; // Stores the map name until we are ready to launch
-
-    [Header("Panels & Transitions")]
+    [Header("Splash Elements")]
     public GameObject splashPanel;
-    public GameObject menuPanel;
-    public CanvasGroup faderGroup;
-    public float fadeDuration = 0.5f;
+    public TextMeshProUGUI pressAnyKeyText; // The "Press Any Key" text object
+    public float blinkSpeed = 2.0f;
 
+    [Header("Menu Panels")]
+    public GameObject menuPanel;
+    
+    [Header("Transition Settings")]
+    public CanvasGroup faderGroup; // The black image with a Canvas Group
+    public float fadeDuration = 0.8f;
+
+    private string selectedLevel = ""; // Stores the map choice
     private bool isAtSplash = true;
+
+    void Start()
+    {
+        // Ensure the menu starts in the correct state
+        if (splashPanel != null) splashPanel.SetActive(true);
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (faderGroup != null) faderGroup.alpha = 0;
+    }
 
     void Update()
     {
-        if (isAtSplash && Input.anyKeyDown)
+        if (isAtSplash)
         {
-            StartCoroutine(TransitionToMenu());
+            // 1. Make the "Press Any Key" text pulse/blink
+            if (pressAnyKeyText != null)
+            {
+                float alpha = (Mathf.Sin(Time.time * blinkSpeed) + 1.0f) / 2.0f;
+                pressAnyKeyText.color = new Color(pressAnyKeyText.color.r, pressAnyKeyText.color.g, pressAnyKeyText.color.b, alpha);
+            }
+
+            // 2. Listen for any input to enter the menu
+            if (Input.anyKeyDown)
+            {
+                StartCoroutine(TransitionToMenu());
+            }
         }
     }
 
-    // 1. CALL THIS ON DAY/NIGHT BUTTONS
+    // --- STEP 1: PLAYER SELECTS THE MAP ---
     public void SelectLevel(string sceneName)
     {
         selectedLevel = sceneName;
-        Debug.Log("📍 [MAIN MENU] Map Selected: " + sceneName + ". Ready to choose difficulty!");
-        
-        // Optional: You could add a visual highlight here so the player knows which is picked
+        Debug.Log("📍 [MAIN MENU] Map Selected: " + sceneName + ". Now choose difficulty to start!");
     }
 
-    // 2. CALL THIS ON EASY/HARD BUTTONS
+    // --- STEP 2: PLAYER SELECTS DIFFICULTY & LAUNCHES ---
     public void SetHardModeAndStart(bool isHard)
     {
-        // First, check if they even picked a level yet
         if (string.IsNullOrEmpty(selectedLevel))
         {
-            Debug.LogWarning("⚠️ [MAIN MENU] Please select a level (Day or Night) first!");
+            Debug.LogWarning("⚠️ [MAIN MENU] Select a Level (Day or Night) first!");
             return; 
         }
 
-        // Set the difficulty globally
-        GameSettings.Instance.isHardMode = isHard;
-        Debug.Log("🏁 [MAIN MENU] Difficulty locked: " + (isHard ? "HARD" : "EASY"));
+        // Apply setting to your singleton
+        if (GameSettings.Instance != null)
+        {
+            GameSettings.Instance.isHardMode = isHard;
+            Debug.Log("🏁 [MAIN MENU] Difficulty locked: " + (isHard ? "HARD" : "EASY"));
+        }
 
-        // Launch the stored level
-        Debug.Log("🚀 [MAIN MENU] Launching Game: " + selectedLevel);
+        Debug.Log("🚀 [MAIN MENU] Launching Scene: " + selectedLevel);
         SceneManager.LoadScene(selectedLevel);
     }
 
-    // --- Splash Transition Logic ---
+    // --- TRANSITION LOGIC ---
     IEnumerator TransitionToMenu()
     {
         isAtSplash = false;
+        
+        // Fade to black
         yield return StartCoroutine(Fade(0, 1));
+
+        // Swap panels while screen is dark
         splashPanel.SetActive(false);
         menuPanel.SetActive(true);
+
+        // Fade back in to see the buttons
         yield return StartCoroutine(Fade(1, 0));
     }
 

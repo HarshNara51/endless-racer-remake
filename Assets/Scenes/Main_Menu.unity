@@ -1168,6 +1168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   splashPanel: {fileID: 1742484663}
+  pressAnyKeyText: {fileID: 152145728}
+  blinkSpeed: 4
   menuPanel: {fileID: 1818641719}
   faderGroup: {fileID: 1788060413}
   fadeDuration: 1
