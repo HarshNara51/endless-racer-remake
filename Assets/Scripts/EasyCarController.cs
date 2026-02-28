@@ -51,6 +51,13 @@ public class EasyCarController : MonoBehaviour
     [Header("UI")]
     public TMP_Text speedometerText;
 
+    // ================= NEW: AUDIO SYSTEM =================
+    [Header("Audio")]
+    public AudioSource engineAudioSource;
+    public float minEnginePitch = 0.8f;
+    public float maxEnginePitch = 2.5f;
+    // =====================================================
+
     private float currentSpeed = 0f;
     private float verticalVelocity = 0f;
 
@@ -69,6 +76,14 @@ public class EasyCarController : MonoBehaviour
         if (reverseLightMesh != null) reverseLightMat = reverseLightMesh.materials[reverseLightMatIndex];
 
         if (headLightMat != null) headLightMat.SetColor("_EmissionColor", headlightOnColor);
+
+        // ================= NEW: AUDIO SETUP =================
+        if (engineAudioSource != null)
+        {
+            engineAudioSource.loop = true;
+            if (!engineAudioSource.isPlaying) engineAudioSource.Play();
+        }
+        // ====================================================
     }
 
     void Update()
@@ -79,6 +94,10 @@ public class EasyCarController : MonoBehaviour
         AnimateVisuals();
         HandleLighting();
         UpdateUI();
+        
+        // ================= NEW: AUDIO UPDATE =================
+        HandleAudio();
+        // =====================================================
     }
 
     void HandleEngine()
@@ -91,7 +110,7 @@ public class EasyCarController : MonoBehaviour
         {
             if (currentSpeed > 0) currentSpeed -= friction * Time.deltaTime;
             else if (currentSpeed < 0) currentSpeed += friction * Time.deltaTime;
-           
+            
             if(Mathf.Abs(currentSpeed) < 1f) currentSpeed = 0;
         }
 
@@ -104,7 +123,7 @@ public class EasyCarController : MonoBehaviour
         {
             float turnInput = Input.GetAxis("Horizontal");
             float direction = currentSpeed > 0 ? 1 : -1;
-           
+            
             transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime * direction);
         }
     }
@@ -179,4 +198,18 @@ public class EasyCarController : MonoBehaviour
         if (speedometerText != null)
             speedometerText.text = Mathf.RoundToInt(currentSpeed).ToString() + " MPH";
     }
+
+    // ================= NEW: AUDIO LOGIC =================
+    void HandleAudio()
+    {
+        if (engineAudioSource != null)
+        {
+            // Calculate how fast we are going relative to max speed (absolute value for reversing)
+            float speedPercent = Mathf.Abs(currentSpeed) / maxSpeed;
+            
+            // Lerp the pitch between the minimum (idle) and maximum (top speed)
+            engineAudioSource.pitch = Mathf.Lerp(minEnginePitch, maxEnginePitch, speedPercent);
+        }
+    }
+    // ====================================================
 }

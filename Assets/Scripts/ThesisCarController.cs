@@ -50,6 +50,13 @@ public class ThesisCarController : MonoBehaviour
     [Header("UI")]
     public TMP_Text speedometerText;
 
+    // ================= NEW: AUDIO SYSTEM =================
+    [Header("Audio")]
+    public AudioSource engineAudioSource;
+    public float minEnginePitch = 0.8f;
+    public float maxEnginePitch = 2.5f;
+    // =====================================================
+
     private float currentSpeed = 0f;
     private float steerLerp = 0f;
     private float wheelRotationAmount = 0f; // Track total rotation for wheels
@@ -72,6 +79,14 @@ public class ThesisCarController : MonoBehaviour
         if (reverseLightMesh != null) reverseLightMat = reverseLightMesh.materials[reverseLightMatIndex];
 
         if (headLightMat != null) headLightMat.SetColor("_EmissionColor", headlightOnColor);
+
+        // ================= NEW: AUDIO SETUP =================
+        if (engineAudioSource != null)
+        {
+            engineAudioSource.loop = true;
+            if (!engineAudioSource.isPlaying) engineAudioSource.Play();
+        }
+        // ====================================================
     }
 
     void Update()
@@ -87,6 +102,10 @@ public class ThesisCarController : MonoBehaviour
         AnimateWheels();
         HandleLighting(); 
         UpdateUI();
+
+        // ================= NEW: AUDIO UPDATE =================
+        HandleAudio();
+        // =====================================================
     }
 
     void HandleInfiniteSpeed()
@@ -216,4 +235,18 @@ public class ThesisCarController : MonoBehaviour
         if (speedometerText != null)
             speedometerText.text = Mathf.RoundToInt(currentSpeed).ToString() + " MPH";
     }
+
+    // ================= NEW: AUDIO LOGIC =================
+    void HandleAudio()
+    {
+        if (engineAudioSource != null)
+        {
+            // Calculate how fast we are going relative to max speed (absolute value for reversing)
+            float speedPercent = Mathf.Abs(currentSpeed) / maxSpeed;
+            
+            // Lerp the pitch between the minimum (idle) and maximum (top speed)
+            engineAudioSource.pitch = Mathf.Lerp(minEnginePitch, maxEnginePitch, speedPercent);
+        }
+    }
+    // ====================================================
 }
