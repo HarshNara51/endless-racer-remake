@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForestManager
   treePrefabs:
-  - {fileID: 1044626128322074540, guid: d97d6c4affd1c64448f84157f5351a03, type: 3}
+  - {fileID: 1374281636063072747, guid: d97d6c4affd1c64448f84157f5351a03, type: 3}
   numberOfTrees: 50000
   mapCenterPoint: {fileID: 1478220333}
   mapBoundsSize: {x: 800, y: 800}
@@ -983,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &413998006
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1073,7 +1073,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 3, y: 3, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1528,7 +1528,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 0.9339623, g: 0.9122612, b: 0.6828498, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
