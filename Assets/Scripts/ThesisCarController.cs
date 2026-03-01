@@ -12,9 +12,9 @@ public class ThesisCarController : MonoBehaviour
     public float handbrakePower = 60f; 
 
     [Header("Handling (Adjust these for difficulty!)")]
-    public float turnSpeed = 70f;      // Lower = Harder
-    public float highSpeedSteerDropoff = 0.3f; // Lower = Harder at high speeds
-    public float steerResponsiveness = 5f; // Lower = "Heavier" steering feel
+    public float turnSpeed = 70f;
+    public float highSpeedSteerDropoff = 0.3f;
+    public float steerResponsiveness = 5f;
     public float maxSteerAngle = 30f; 
     public float gravity = 20f;         
     public float stickToRoadForce = 10f; 
@@ -50,16 +50,24 @@ public class ThesisCarController : MonoBehaviour
     [Header("UI")]
     public TMP_Text speedometerText;
 
-    // ================= NEW: AUDIO SYSTEM =================
-    [Header("Audio")]
+    // ================= 3 GEAR AUDIO SYSTEM =================
+    [Header("Engine Audio - 3 Gear System")]
     public AudioSource engineAudioSource;
-    public float minEnginePitch = 0.8f;
-    public float maxEnginePitch = 2.5f;
-    // =====================================================
+
+    public AudioClip gear1Clip;
+    public AudioClip gear2Clip;
+    public AudioClip gear3Clip;
+
+    [Header("Gear Speed Thresholds")]
+    public float gear1MaxSpeed = 25f;
+    public float gear2MaxSpeed = 55f;
+
+    private int currentGear = 0;
+    // =======================================================
 
     private float currentSpeed = 0f;
     private float steerLerp = 0f;
-    private float wheelRotationAmount = 0f; // Track total rotation for wheels
+    private float wheelRotationAmount = 0f;
     private float verticalVelocity = 0f;
     private bool isGameOver = false;
     private bool isHandbraking = false;
@@ -80,13 +88,11 @@ public class ThesisCarController : MonoBehaviour
 
         if (headLightMat != null) headLightMat.SetColor("_EmissionColor", headlightOnColor);
 
-        // ================= NEW: AUDIO SETUP =================
         if (engineAudioSource != null)
         {
             engineAudioSource.loop = true;
-            if (!engineAudioSource.isPlaying) engineAudioSource.Play();
+            engineAudioSource.playOnAwake = false;
         }
-        // ====================================================
     }
 
     void Update()
@@ -102,10 +108,7 @@ public class ThesisCarController : MonoBehaviour
         AnimateWheels();
         HandleLighting(); 
         UpdateUI();
-
-        // ================= NEW: AUDIO UPDATE =================
         HandleAudio();
-        // =====================================================
     }
 
     void HandleInfiniteSpeed()
@@ -144,13 +147,8 @@ public class ThesisCarController : MonoBehaviour
         {
             float turnInput = Input.GetAxis("Horizontal"); 
             float speedFactor = Mathf.Abs(currentSpeed) / maxSpeed;
-            
-            // Steering gets exponentially weaker at high speeds
             float dynamicTurnSpeed = turnSpeed * Mathf.Lerp(1.0f, highSpeedSteerDropoff, speedFactor);
-            
-            // How fast the steering "reacts" to key presses
             steerLerp = Mathf.Lerp(steerLerp, turnInput, Time.deltaTime * steerResponsiveness);
-            
             float direction = currentSpeed > 0 ? 1 : -1;
             transform.Rotate(Vector3.up * steerLerp * dynamicTurnSpeed * Time.deltaTime * direction);
         }
@@ -179,21 +177,18 @@ public class ThesisCarController : MonoBehaviour
 
     void AnimateWheels()
     {
-        // Track the cumulative rotation to keep spinning consistent
         wheelRotationAmount += currentSpeed * wheelSpinSpeed * Time.deltaTime;
         float visualSteerAngle = steerLerp * maxSteerAngle;
 
         foreach (Transform wheel in frontWheels)
         {
             if (wheel == null) continue;
-            // First apply the steering (Y), then the accumulated spin (X)
             wheel.localRotation = Quaternion.Euler(wheelRotationAmount, visualSteerAngle, 0);
         }
 
         foreach (Transform wheel in backWheels)
         {
             if (wheel == null) continue;
-            // Back wheels only need the spin
             wheel.localRotation = Quaternion.Euler(wheelRotationAmount, 0, 0);
         }
     }
@@ -236,17 +231,47 @@ public class ThesisCarController : MonoBehaviour
             speedometerText.text = Mathf.RoundToInt(currentSpeed).ToString() + " MPH";
     }
 
-    // ================= NEW: AUDIO LOGIC =================
+    // ================= 3 GEAR AUDIO LOGIC =================
     void HandleAudio()
     {
-        if (engineAudioSource != null)
+        if (engineAudioSource == null) return;
+
+        float speed = Mathf.Abs(currentSpeed);
+        int targetGear = 0;
+
+        if (speed <= 0.1f)
         {
-            // Calculate how fast we are going relative to max speed (absolute value for reversing)
-            float speedPercent = Mathf.Abs(currentSpeed) / maxSpeed;
-            
-            // Lerp the pitch between the minimum (idle) and maximum (top speed)
-            engineAudioSource.pitch = Mathf.Lerp(minEnginePitch, maxEnginePitch, speedPercent);
+            engineAudioSource.Stop();
+            currentGear = 0;
+            return;
+        }
+
+        if (speed <= gear1MaxSpeed)
+            targetGear = 1;
+        else if (speed <= gear2MaxSpeed)
+            targetGear = 2;
+        else
+            targetGear = 3;
+
+        if (targetGear != currentGear)
+        {
+            currentGear = targetGear;
+
+            switch (currentGear)
+            {
+                case 1:
+                    engineAudioSource.clip = gear1Clip;
+                    break;
+                case 2:
+                    engineAudioSource.clip = gear2Clip;
+                    break;
+                case 3:
+                    engineAudioSource.clip = gear3Clip;
+                    break;
+            }
+
+            if (engineAudioSource.clip != null)
+                engineAudioSource.Play();
         }
     }
-    // ====================================================
 }
