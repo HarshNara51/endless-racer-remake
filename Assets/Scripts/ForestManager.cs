@@ -34,6 +34,9 @@ void GenerateForest()
 
             Vector3 spawnPos = new Vector3(randomX, terrainY, randomZ);
             GameObject newTree = Instantiate(randomTree, spawnPos, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+
+            float randomScale = Random.Range(0.5f, 2f);
+            newTree.transform.localScale *= randomScale;
             
             newTree.transform.SetParent(forestContainer.transform);
         }

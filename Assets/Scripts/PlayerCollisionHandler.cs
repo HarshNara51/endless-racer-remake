@@ -1,32 +1,48 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
     public enum Difficulty { Easy, Hard }
     public Difficulty currentDifficulty;
 
-    private Rigidbody rb;
+    private EasyCarController easyController;
+    private ThesisCarController thesisController;
+
+    private bool isStunned = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        easyController = GetComponent<EasyCarController>();
+        thesisController = GetComponent<ThesisCarController>();
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void Stun(float duration)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            if (currentDifficulty == Difficulty.Easy)
-            {
-                // Stop momentum only
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-            }
-            else if (currentDifficulty == Difficulty.Hard)
-            {
-                Debug.Log("Game Over");
-                // Replace later with your GameOver() call
-            }
-        }
+        if (!isStunned)
+            StartCoroutine(StunRoutine(duration));
+    }
+
+    IEnumerator StunRoutine(float duration)
+    {
+        isStunned = true;
+
+        // Disable movement scripts
+        if (easyController != null)
+            easyController.enabled = false;
+
+        if (thesisController != null)
+            thesisController.enabled = false;
+
+        yield return new WaitForSeconds(duration);
+
+        // Re-enable both
+        if (easyController != null)
+            easyController.enabled = true;
+
+        if (thesisController != null)
+            thesisController.enabled = true;
+
+        isStunned = false;
     }
 }

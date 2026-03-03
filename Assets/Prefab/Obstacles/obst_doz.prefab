@@ -2442,7 +2442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e8173ae661fc41a304641d45e9cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  damage: 20
+  baseDamage: 10
+  obstacleType: 2
 --- !u!1 &6390521489644464642
 GameObject:
   m_ObjectHideFlags: 0

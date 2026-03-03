@@ -63,6 +63,8 @@ public class CarHealth : MonoBehaviour
                 damage *= 2;
 
             TakeDamage(damage);
+
+            obstacle.Collision(gameObject);
             return;
         }
 

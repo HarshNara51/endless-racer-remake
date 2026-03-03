@@ -560,7 +560,7 @@ MonoBehaviour:
   - {fileID: 5876272361896301315, guid: 4808eca32f53f3a4f9903228457c756a, type: 3}
   - {fileID: 8726388749112466876, guid: 690338a3dece775499b9214d7dd6ce88, type: 3}
   - {fileID: 949734226891938643, guid: 952077f75f79cbf4291e75b08eea8692, type: 3}
-  numberOfTrees: 1000
+  numberOfTrees: 10000
   mapCenterPoint: {fileID: 1478220333}
   mapBoundsSize: {x: 800, y: 800}
 --- !u!4 &198941576
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   - {fileID: 6978084681429252925, guid: 38c325fda12f2e04b9e4288df1812301, type: 3}
   - {fileID: 1617214717798684933, guid: 5d55a77bd64139545b2e0509b578af0d, type: 3}
   - {fileID: 148315663865647869, guid: a65c0303057e9514297ed7ce8d9f1d5c, type: 3}
-  numberOfTrees: 50
+  numberOfTrees: 30
   mapCenterPoint: {fileID: 1478220333}
   mapBoundsSize: {x: 800, y: 800}
 --- !u!1 &1218258718
