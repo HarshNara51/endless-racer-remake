@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4806867144745455649}
   - component: {fileID: 6794785354566895754}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7559816711402843986}
   - component: {fileID: 1327005769984744731}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247715625327939700}
   - component: {fileID: 1182609079738060833}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7831879951127048538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8849440144972910903}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9157251231236694497}
   - component: {fileID: 6936632865382345374}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441640259721106046}
   - component: {fileID: 3308871709442796773}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3009695295638027578}
   - component: {fileID: 5203311876222020600}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 2176932668400824944}
   - component: {fileID: 4336716032529169730}
   - component: {fileID: 5982736925240315441}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Road_patterns6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642709373294150558}
   - component: {fileID: 165560732830203447}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 4691052162973358370}
   - component: {fileID: 3695106078081179850}
   - component: {fileID: 704134353986543013}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Road_Curve_6 (rev)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,9 +656,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a743c48cd0b6c14ca951ac47a3a38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  obstaclePrefabs: []
+  currentDifficulty: 0
+  conePrefab: {fileID: 0}
+  bulldozerPrefab: {fileID: 0}
   spawnPoints: []
-  spawnChance: 0.3
+  easySpawnChance: 0.3
+  hardSpawnChance: 0.7
 --- !u!1 &8778716380437786287
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4157586804330151612}
   - component: {fileID: 7628201559602404261}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6831221405032784935}
   - component: {fileID: 6800874279584417720}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

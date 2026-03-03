@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2569717646166467092}
   - component: {fileID: 4902563915822698281}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6329362816486890476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8360440008784712867}
   - component: {fileID: 1271205317444450107}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 8176248531444405858}
   - component: {fileID: 3907585457912520138}
   - component: {fileID: 393035618502547638}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Road_patterns2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9109287825566076441}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8946673928164529359}
   - component: {fileID: 7167941566305982536}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 4761845545871607316}
   - component: {fileID: 1097195529455812930}
   - component: {fileID: 1628464768016890003}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Road_Curve_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,9 +439,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a743c48cd0b6c14ca951ac47a3a38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  obstaclePrefabs: []
+  currentDifficulty: 0
+  conePrefab: {fileID: 0}
+  bulldozerPrefab: {fileID: 0}
   spawnPoints: []
-  spawnChance: 0.3
+  easySpawnChance: 0.3
+  hardSpawnChance: 0.7
 --- !u!1 &8545857702439591273
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6691753709965477166}
   - component: {fileID: 5129288999504785778}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
