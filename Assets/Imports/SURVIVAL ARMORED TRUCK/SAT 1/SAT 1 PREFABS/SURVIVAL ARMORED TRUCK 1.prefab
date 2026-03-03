@@ -1894,7 +1894,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7436059351856633236}
   - component: {fileID: 6041245249818748441}
-  - component: {fileID: 3399989977970326162}
   m_Layer: 3
   m_Name: SURVIVAL ARMORED TRUCK 1
   m_TagString: Untagged
@@ -1919,27 +1918,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6041245249818748441
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816525166893240110}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 2, z: 8}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &3399989977970326162
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

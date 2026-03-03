@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6930240085791125948}
   - component: {fileID: 8337320056575567819}
   - component: {fileID: 8984361237057318716}
-  - component: {fileID: 1570119907092332160}
+  - component: {fileID: 7874560682700514964}
   m_Layer: 8
   m_Name: obst_con
   m_TagString: Obstacle
@@ -140,7 +140,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -173,7 +173,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1570119907092332160
+--- !u!114 &7874560682700514964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 981522104203105332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0cfbbe200d0aca4aa48e3babdeff141, type: 3}
+  m_Script: {fileID: 11500000, guid: 881e8173ae661fc41a304641d45e9cc9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObstacleCollision
-  currentDifficulty: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  damage: 20
