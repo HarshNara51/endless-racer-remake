@@ -164,10 +164,10 @@ public class CarHealth : MonoBehaviour
                 fillImage.color = lowHealthColor;
         }
     }
-
-    void GameOver()
-    {
-        Debug.Log("GAME OVER");
-        Time.timeScale = 0f;
-    }
+void GameOver()
+{
+    GameOverManager manager = FindFirstObjectByType<GameOverManager>();
+    if (manager != null)
+        manager.ShowGameOver();
+}
 }
