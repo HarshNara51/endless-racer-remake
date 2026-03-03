@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552156473072882332}
-  - component: {fileID: 6984950455438195146}
-  - component: {fileID: 7823956169529411390}
   m_Layer: 0
   m_Name: Grass
-  m_TagString: Tree
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,47 +32,6 @@ Transform:
   - {fileID: 4309165199596989910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6984950455438195146
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374281636063072747}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!205 &7823956169529411390
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374281636063072747}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0.4993373, z: 0.16246629}
-  m_Size: 3.8258007
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.09777551
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5538197396013989856}
-  m_Enabled: 1
 --- !u!1 &6072154872394096812
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,9 +43,11 @@ GameObject:
   - component: {fileID: 4309165199596989910}
   - component: {fileID: 8774337737753090683}
   - component: {fileID: 5538197396013989856}
+  - component: {fileID: 1531953768604595246}
+  - component: {fileID: 6850696623306819881}
   m_Layer: 0
   m_Name: GrassLawnAutumn
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,3 +127,44 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1531953768604595246
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072154872394096812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 657105787149206959, guid: 7465ade81c768eb43847dc09c8fd8dca, type: 3}
+--- !u!205 &6850696623306819881
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072154872394096812}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 49.933727, z: 0.00024414062}
+  m_Size: 382.58008
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.09957958
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5538197396013989856}
+  m_Enabled: 1

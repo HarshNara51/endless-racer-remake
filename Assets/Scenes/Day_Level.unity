@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 232036100}
   - component: {fileID: 232036099}
   - component: {fileID: 232036101}
+  - component: {fileID: 232036102}
   m_Layer: 0
   m_Name: Player_Car_Root
   m_TagString: Player
@@ -691,6 +692,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &232036102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232036096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c852d1d2fbdfce64cafbd056674a1f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionHandler
+  currentDifficulty: 0
 --- !u!23 &246573674 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1721776665467771559, guid: f41fc8de3b857f04b8ab582ab168e44e, type: 3}

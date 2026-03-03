@@ -419,13 +419,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a743c48cd0b6c14ca951ac47a3a38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  obstaclePrefabs:
-  - {fileID: 401827152860668579, guid: 1ff68fdc68b620d49a7ea62ca3fecd48, type: 3}
+  currentDifficulty: 0
+  conePrefab: {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
+  bulldozerPrefab: {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
   spawnPoints:
   - {fileID: 5362610315409234665}
   - {fileID: 2464337265767367762}
   - {fileID: 4136214382365440698}
-  spawnChance: 0.7
+  easySpawnChance: 0.3
+  hardSpawnChance: 0.7
 --- !u!1 &7773831819597806677
 GameObject:
   m_ObjectHideFlags: 0
