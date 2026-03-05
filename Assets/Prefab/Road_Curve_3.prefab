@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2652259711304499870}
   - component: {fileID: 3513147571547830626}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 984398110037626703}
   - component: {fileID: 2529449630989679742}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7732822118595433274}
   - component: {fileID: 1215644953166947988}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: VegetationCleaner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

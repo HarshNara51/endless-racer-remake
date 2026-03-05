@@ -391,7 +391,6 @@ MonoBehaviour:
   conePrefab: {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
   bulldozerPrefab: {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
   spawnPoints:
-  - {fileID: 0}
   - {fileID: 2464337265767367762}
   - {fileID: 4136214382365440698}
   easySpawnChance: 0.3

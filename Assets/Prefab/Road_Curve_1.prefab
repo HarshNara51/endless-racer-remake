@@ -340,7 +340,6 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 2808618352109922528}
   - {fileID: 2966414118934027393}
-  - {fileID: 0}
   easySpawnChance: 0.3
   hardSpawnChance: 0.7
 --- !u!1 &6111037143688447475

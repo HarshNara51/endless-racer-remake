@@ -440,8 +440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   currentDifficulty: 0
-  conePrefab: {fileID: 0}
-  bulldozerPrefab: {fileID: 0}
+  conePrefab: {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
+  bulldozerPrefab: {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
   spawnPoints: []
   easySpawnChance: 0.3
   hardSpawnChance: 0.7
