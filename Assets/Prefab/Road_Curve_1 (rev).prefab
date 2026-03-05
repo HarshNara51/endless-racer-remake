@@ -34,7 +34,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5362610315409234665}
   - {fileID: 2464337265767367762}
   - {fileID: 4136214382365440698}
   - {fileID: 3042109673131644023}
@@ -160,37 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd053f55b981cb4d97b02c39ead6d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadVegetationClearer
---- !u!1 &3306780612783005022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5362610315409234665}
-  m_Layer: 9
-  m_Name: ObstaclePos_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
-  m_IsActive: 1
---- !u!4 &5362610315409234665
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3306780612783005022}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.11421887, z: -0, w: 0.99345565}
-  m_LocalPosition: {x: 0.46, y: 1, z: -40.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5458393841502397706}
-  m_LocalEulerAnglesHint: {x: 0, y: -13.117, z: 0}
 --- !u!1 &3925164034499130492
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +391,7 @@ MonoBehaviour:
   conePrefab: {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
   bulldozerPrefab: {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
   spawnPoints:
-  - {fileID: 5362610315409234665}
+  - {fileID: 0}
   - {fileID: 2464337265767367762}
   - {fileID: 4136214382365440698}
   easySpawnChance: 0.3

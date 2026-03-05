@@ -36,7 +36,6 @@ Transform:
   m_Children:
   - {fileID: 2808618352109922528}
   - {fileID: 2966414118934027393}
-  - {fileID: 3846163553237558118}
   - {fileID: 8501107529055750297}
   - {fileID: 2313234725305628888}
   - {fileID: 1131624162184435379}
@@ -275,37 +274,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14, y: 3, z: 50}
   m_Center: {x: 0.48, y: 0, z: 0}
---- !u!1 &5331832098258570325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3846163553237558118}
-  m_Layer: 9
-  m_Name: ObstaclePos_1 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 64
-  m_IsActive: 1
---- !u!4 &3846163553237558118
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5331832098258570325}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.3618128, z: -0, w: 0.9322508}
-  m_LocalPosition: {x: 27.5, y: 1, z: -90.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3669007242467197792}
-  m_LocalEulerAnglesHint: {x: 0, y: -42.423, z: 0}
 --- !u!1 &5408307612148455822
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +340,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 2808618352109922528}
   - {fileID: 2966414118934027393}
-  - {fileID: 3846163553237558118}
+  - {fileID: 0}
   easySpawnChance: 0.3
   hardSpawnChance: 0.7
 --- !u!1 &6111037143688447475
