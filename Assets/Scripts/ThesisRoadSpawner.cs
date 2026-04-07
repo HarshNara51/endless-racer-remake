@@ -22,6 +22,9 @@ public class ThesisRoadSpawner : MonoBehaviour
     public int initialTiles = 1;
     public float spawnDistance = 15f;
 
+    [Header("Destruction Settings")]
+    public int maxActiveTiles = 4; // Increase if roads vanish too early, decrease if overlap occurs
+
     [Header("Debug")]
     public bool enableDebugLogs = true;
 
@@ -92,7 +95,7 @@ public class ThesisRoadSpawner : MonoBehaviour
         }
 
         FinalizeTile(tile);
-        DestroyAllButLastTwo();
+        DestroyOldTiles();
     }
 
     void FinalizeTile(GameObject tile)
@@ -161,9 +164,9 @@ public class ThesisRoadSpawner : MonoBehaviour
         else return leftTurnPrefab;
     }
 
-    void DestroyAllButLastTwo()
+    void DestroyOldTiles()
     {
-        while (activeTiles.Count > 2)
+        while (activeTiles.Count > maxActiveTiles)
         {
             GameObject old = activeTiles[0];
             activeTiles.RemoveAt(0);
