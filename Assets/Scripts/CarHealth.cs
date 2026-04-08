@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections; // Required for IEnumerator (Coroutines)
 
 public class CarHealth : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class CarHealth : MonoBehaviour
     private int roadContacts = 0;
     private int roadLayer;
 
+    // --- NEW: Grace Period Tracker ---
+    private bool isGracePeriodActive = true;
+
     void Start()
     {
         currentHP = maxHP;
@@ -45,6 +49,9 @@ public class CarHealth : MonoBehaviour
             offRoadWarningText.gameObject.SetActive(false);
 
         UpdateUI();
+
+        // --- NEW: Start the 10-second grace period timer ---
+        StartCoroutine(GracePeriodRoutine());
     }
 
     void Update()
@@ -95,6 +102,12 @@ public class CarHealth : MonoBehaviour
     void HandleOffRoadState()
     {
         bool isOffRoad = vegetationContacts > 0 && roadContacts == 0;
+
+        // --- NEW: Override off-road damage if we are in the grace period ---
+        if (isGracePeriodActive)
+        {
+            isOffRoad = false;
+        }
 
         // Warning UI
         if (offRoadWarningText != null)
@@ -166,10 +179,18 @@ public class CarHealth : MonoBehaviour
                 fillImage.color = lowHealthColor;
         }
     }
-void GameOver()
-{
-    GameOverManager manager = FindFirstObjectByType<GameOverManager>();
-    if (manager != null)
-        manager.ShowGameOver();
-}
+
+    void GameOver()
+    {
+        GameOverManager manager = FindFirstObjectByType<GameOverManager>();
+        if (manager != null)
+            manager.ShowGameOver();
+    }
+
+    // --- NEW: The 10-second real-time grace period routine ---
+    IEnumerator GracePeriodRoutine()
+    {
+        yield return new WaitForSecondsRealtime(12f);
+        isGracePeriodActive = false;
+    }
 }

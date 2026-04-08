@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 891188851467842307}
   - component: {fileID: 274383624405563778}
   - component: {fileID: 2152593612202634159}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: streetScene_sketchfab01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 8337320056575567819}
   - component: {fileID: 8984361237057318716}
   - component: {fileID: 7874560682700514964}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: obst_con
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -187,3 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   baseDamage: 10
   obstacleType: 1
+  sideForce: 8
+  upwardForce: 3
+  spinForce: 5
