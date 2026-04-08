@@ -654,7 +654,7 @@ MonoBehaviour:
   - {fileID: 1374281636063072747, guid: d97d6c4affd1c64448f84157f5351a03, type: 3}
   numberOfTrees: 50000
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 800, y: 800}
+  mapBoundsSize: {x: 1200, y: 1200}
 --- !u!1 &179155861
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   - {fileID: 949734226891938643, guid: 952077f75f79cbf4291e75b08eea8692, type: 3}
   numberOfTrees: 10000
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 800, y: 800}
+  mapBoundsSize: {x: 1200, y: 1200}
 --- !u!4 &198941576
 Transform:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 28acee389b24c19468b74a6f7964cb9b, type: 3}
   numberOfTrees: 100
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 800, y: 800}
+  mapBoundsSize: {x: 1200, y: 1200}
 --- !u!4 &314861869
 Transform:
   m_ObjectHideFlags: 0
@@ -1967,7 +1967,7 @@ Transform:
   m_GameObject: {fileID: 497518453}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -335.0913, y: -5.7498, z: -588.57184}
+  m_LocalPosition: {x: -1286, y: -5.7498, z: -1652}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3033,7 +3033,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1164433026}
-  - component: {fileID: 1164433027}
   m_Layer: 0
   m_Name: BuildingManager
   m_TagString: Untagged
@@ -3056,27 +3055,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 683266941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1164433027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164433025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc5131526bcd3c1499b886a6e57001af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ForestManager
-  treePrefabs:
-  - {fileID: 4035258303889830069, guid: a2af9cc12e727de4eb3db71e8d868a9f, type: 3}
-  - {fileID: 3498386369444095148, guid: 782ff2b6e0ca5f04ab8da15fa83a2981, type: 3}
-  - {fileID: 6978084681429252925, guid: 38c325fda12f2e04b9e4288df1812301, type: 3}
-  - {fileID: 1617214717798684933, guid: 5d55a77bd64139545b2e0509b578af0d, type: 3}
-  - {fileID: 148315663865647869, guid: a65c0303057e9514297ed7ce8d9f1d5c, type: 3}
-  numberOfTrees: 30
-  mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 800, y: 800}
 --- !u!1 &1178891759
 GameObject:
   m_ObjectHideFlags: 0
@@ -4551,13 +4529,14 @@ MonoBehaviour:
   - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
   - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
   mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 650, y: 650}
+  mapBoundsSize: {x: 750, y: 750}
   leftTurnPrefab: {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
   rightTurnPrefab: {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
   playerCar: {fileID: 1897467788}
   mainCamera: {fileID: 961739752}
-  initialTiles: 1
-  spawnDistance: 75
+  initialTiles: 2
+  spawnDistance: 90
+  maxActiveTiles: 3
   enableDebugLogs: 1
 --- !u!4 &1759469783
 Transform:
