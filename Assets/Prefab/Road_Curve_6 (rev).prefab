@@ -657,10 +657,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   currentDifficulty: 0
-  conePrefab: {fileID: 0}
-  bulldozerPrefab: {fileID: 0}
+  obstaclePrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoints: []
-  easySpawnChance: 0.3
+  easySpawnChance: 1
   hardSpawnChance: 0.7
 --- !u!1 &8778716380437786287
 GameObject:

@@ -207,8 +207,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   currentDifficulty: 0
-  conePrefab: {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
-  bulldozerPrefab: {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
+  obstaclePrefabs:
+  - {fileID: 2543588297636418956, guid: 4d07c3f41f7f4764297c9541f725be6e, type: 3}
+  - {fileID: 7987694257398160935, guid: 830e6c56dcc51a34d90074acbc3d2033, type: 3}
+  - {fileID: 865525354536224676, guid: 59bd2ffaa6e586147b740c095c843863, type: 3}
+  - {fileID: 981522104203105332, guid: fe781a10389302846b18c853d797af42, type: 3}
+  - {fileID: 6387035380645299990, guid: 42d41776e01c50b4ea83d47ee9a7da76, type: 3}
+  - {fileID: 193201263996423898, guid: e044f9b003d5c754b9c458022782a293, type: 3}
+  - {fileID: 673757244611119173, guid: 12cfb5f14f5e3d94493eda04fa5545e2, type: 3}
+  - {fileID: 5397024610568031574, guid: ff5fcf6514b19d24f9735cd45b5bb122, type: 3}
+  - {fileID: 227579183071613593, guid: 2fcb741432771654aae0599810270924, type: 3}
   spawnPoints:
   - {fileID: 1215369465155611143}
   - {fileID: 1304280047322095452}
@@ -217,7 +225,7 @@ MonoBehaviour:
   - {fileID: 7012074057386391587}
   - {fileID: 2719339323477037632}
   - {fileID: 2524583763282858557}
-  easySpawnChance: 0.3
+  easySpawnChance: 1
   hardSpawnChance: 0.7
 --- !u!1 &2875596071054107405
 GameObject:
