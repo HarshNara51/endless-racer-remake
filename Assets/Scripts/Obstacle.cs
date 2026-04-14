@@ -71,5 +71,10 @@ public class Obstacle : MonoBehaviour
             
             // The 15% health reduction is automatically handled by your CarHealth.cs script!
         }
+        if (HitUIManager.Instance != null)
+{
+    string name = obstacleType == 1 ? "Cone!" : "Dozer!";
+    HitUIManager.Instance.RegisterHit(name);
+}
     }
 }
