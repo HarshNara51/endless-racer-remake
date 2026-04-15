@@ -77,7 +77,7 @@ public class Obstacle : MonoBehaviour
         if (HitUIManager.Instance != null)
         {
             string cleanName = gameObject.name.Replace("(Clone)", "").Trim();
-            HitUIManager.Instance.RegisterHit(cleanName);
+            HitUIManager.Instance.RegisterHit(cleanName + "!");
         }
     }
 

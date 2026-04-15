@@ -3,20 +3,20 @@ using System.Collections;
 
 namespace SAT1Controller
 {
-    public class SAT1EasyController : MonoBehaviour
+    public class SAT1HardController : MonoBehaviour
     {
-        [Header("Car Settings (EASY MODE)")]
+        [Header("Car Settings (HARD MODE)")]
         public float acceleration = 4000f;
         public float arcadeBoostForce = 8000f; 
-        public float maxSpeed = 55f; 
-        public float turnSpeed = 4f; 
-        public float driftFactor = 0.95f; 
-        public float driftBoost = 1.1f; 
+        public float maxSpeed = 70f; 
+        public float turnSpeed = 3.2f; 
+        public float driftFactor = 0.98f; 
+        public float driftBoost = 1.05f; 
         public float brakeForce = 8000f; 
-        public float gripStrength = 10f; 
+        public float gripStrength = 3.5f; 
 
-        [Header("Impact Settings")]
-        public float heavyStunDuration = 3f; 
+        [Header("Impact Settings (Punishing)")]
+        public float heavyStunDuration = 4.5f; 
 
         [Header("Wheel Colliders")]
         public WheelCollider frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel;
@@ -182,7 +182,7 @@ namespace SAT1Controller
 
         void OnTriggerEnter(Collider other)
         {
-            if (!this.enabled) return;
+            if (!this.enabled) return; 
 
             Obstacle hitObstacle = other.GetComponent<Obstacle>();
 
@@ -194,19 +194,19 @@ namespace SAT1Controller
                 }
                 else if (hitObstacle.obstacleType == 1) 
                 {
-                    rb.linearVelocity *= 0.6f; 
+                    rb.linearVelocity *= 0.5f; 
                 }
             }
             else if (other.gameObject.CompareTag("Obstacle")) 
             {
-                rb.linearVelocity *= 0.4f; 
+                rb.linearVelocity *= 0.2f; 
             }
         }
 
         IEnumerator StunRoutine(float stunDuration)
         {
             isStunned = true; 
-            rb.linearVelocity *= 0.25f; 
+            rb.linearVelocity *= 0.10f; 
             yield return new WaitForSeconds(stunDuration); 
             isStunned = false; 
         }
