@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e8173ae661fc41a304641d45e9cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  baseDamage: 6
   obstacleType: 3
+  baseDamage: 6
   sideForce: 3
   upwardForce: 0
   spinForce: 2

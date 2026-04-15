@@ -26,24 +26,29 @@ public class BulldozerMovement : MonoBehaviour
         currentSpeed = (difficulty == GameDifficulty.Easy) ? easySpeed : hardSpeed;
     }
 
- void Update()
+    void Update()
     {
         // 1. Move the Bulldozer (Position)
         float timeValue = Time.time * currentSpeed;
         float offset = Mathf.Sin(timeValue) * moveDistance;
-        transform.position = startPosition + new Vector3(offset, 0, 0); 
+        
+        // 🔥 THE FIX: Move sideways relative to the road, but KEEP the current Y position so gravity works!
+        Vector3 newPosition = startPosition + (startRotation * new Vector3(offset, 0, 0)); 
+        newPosition.y = transform.position.y; 
+        
+        transform.position = newPosition; 
         
         // 2. Rotate the Bulldozer (Facing Direction)
         float direction = Mathf.Cos(timeValue); 
         
         if (direction > 0.01f)
         {
-            // Moving Right -> Swapped to -90 (or 270) to put it in Drive!
+            // Moving Right
             transform.rotation = startRotation * Quaternion.Euler(0, -90, 0);
         }
         else if (direction < -0.01f)
         {
-            // Moving Left -> Swapped to 90 to put it in Drive!
+            // Moving Left
             transform.rotation = startRotation * Quaternion.Euler(0, 90, 0);
         }
     }

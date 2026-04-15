@@ -347,6 +347,9 @@ MonoBehaviour:
   spawnPoints: []
   easySpawnChance: 1
   hardSpawnChance: 0.7
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &4111529711899439921
 GameObject:
   m_ObjectHideFlags: 0

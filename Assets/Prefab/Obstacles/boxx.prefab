@@ -82,7 +82,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.15, y: 1.8, z: 2.5}
+  m_Size: {x: 3.7, y: 1.8, z: 2.9}
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &8474307592323977491
 MonoBehaviour:
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e8173ae661fc41a304641d45e9cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  baseDamage: 3
   obstacleType: 4
+  baseDamage: 3
   sideForce: 6
   upwardForce: 2
   spinForce: 4
