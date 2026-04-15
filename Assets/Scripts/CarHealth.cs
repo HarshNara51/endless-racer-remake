@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // Required for IEnumerator (Coroutines)
+using System.Collections; 
 
 public class CarHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
+    [Header("Off-Road Engine Settings")]
     public int maxHP = 100;
     private float currentHP;
 
@@ -27,17 +27,20 @@ public class CarHealth : MonoBehaviour
     public float easyDrainPerSecond = 3f;
     public float hardDrainPerSecond = 6f;
 
-    private int vegetationContacts = 0;
-    private int roadContacts = 0;
+    // 🔥 THE FIX: Replaced buggy integers with bulletproof time trackers!
+    private float lastVegetationTouch = -10f;
+    private float lastRoadTouch = -10f;
     private int roadLayer;
 
-    // --- NEW: Grace Period Tracker ---
     private bool isGracePeriodActive = true;
+    private bool isStalled = false; 
+    private Rigidbody rb;
 
     void Start()
     {
         currentHP = maxHP;
         roadLayer = LayerMask.NameToLayer("Road");
+        rb = GetComponent<Rigidbody>();
 
         if (hpSlider != null)
         {
@@ -49,61 +52,50 @@ public class CarHealth : MonoBehaviour
             offRoadWarningText.gameObject.SetActive(false);
 
         UpdateUI();
-
-        // --- NEW: Start the 10-second grace period timer ---
         StartCoroutine(GracePeriodRoutine());
     }
 
     void Update()
     {
-        HandleOffRoadState();
+        if (!isStalled)
+        {
+            HandleOffRoadState();
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // Obstacles still trigger their physical hits instantly here
         Obstacle obstacle = other.GetComponent<Obstacle>();
         if (obstacle != null)
         {
-            int damage = obstacle.baseDamage;
-
-            if (GameSettings.Instance != null && GameSettings.Instance.isHardMode)
-                damage *= 2;
-
-            TakeDamage(damage);
-
             obstacle.Collision(gameObject);
             return;
         }
-
-        if (other.CompareTag("Tree"))
-            vegetationContacts++;
-
-        if (other.gameObject.layer == roadLayer)
-            roadContacts++;
     }
 
-    void OnTriggerExit(Collider other)
+    // 🔥 THE FIX: Constantly refreshes the timer as long as you are touching it
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Tree"))
         {
-            vegetationContacts--;
-            if (vegetationContacts < 0)
-                vegetationContacts = 0;
+            lastVegetationTouch = Time.time;
         }
-
+        
         if (other.gameObject.layer == roadLayer)
         {
-            roadContacts--;
-            if (roadContacts < 0)
-                roadContacts = 0;
+            lastRoadTouch = Time.time;
         }
     }
 
     void HandleOffRoadState()
     {
-        bool isOffRoad = vegetationContacts > 0 && roadContacts == 0;
+        // 🔥 THE FIX: If we touched grass in the last 0.15s, and haven't touched a road in 0.15s... we are off-road!
+        bool touchingVeg = (Time.time - lastVegetationTouch) < 0.15f;
+        bool touchingRoad = (Time.time - lastRoadTouch) < 0.15f;
 
-        // --- NEW: Override off-road damage if we are in the grace period ---
+        bool isOffRoad = touchingVeg && !touchingRoad;
+
         if (isGracePeriodActive)
         {
             isOffRoad = false;
@@ -125,69 +117,71 @@ public class CarHealth : MonoBehaviour
         // Drain HP
         if (isOffRoad)
         {
-            float drain = easyDrainPerSecond;
-
-            if (GameSettings.Instance != null && GameSettings.Instance.isHardMode)
-                drain = hardDrainPerSecond;
-
+            float drain = GameSettings.Instance != null && GameSettings.Instance.isHardMode ? hardDrainPerSecond : easyDrainPerSecond;
             currentHP -= drain * Time.deltaTime;
 
             if (currentHP <= 0)
             {
                 currentHP = 0;
                 UpdateUI();
-                GameOver();
+                StartCoroutine(EngineStallRoutine()); 
                 return;
             }
-
             UpdateUI();
         }
-    }
-
-    void TakeDamage(int amount)
-    {
-        currentHP -= amount;
-
-        if (currentHP <= 0)
+        else if (currentHP < maxHP)
         {
-            currentHP = 0;
+            currentHP += (easyDrainPerSecond / 2f) * Time.deltaTime;
+            if (currentHP > maxHP) currentHP = maxHP;
             UpdateUI();
-            GameOver();
-            return;
         }
-
-        UpdateUI();
     }
 
     void UpdateUI()
     {
         float healthPercent = currentHP / maxHP;
 
-        if (hpSlider != null)
-            hpSlider.value = currentHP;
-
-        if (hpPercentText != null)
-            hpPercentText.text = Mathf.RoundToInt(healthPercent * 100f) + "%";
+        if (hpSlider != null) hpSlider.value = currentHP;
+        if (hpPercentText != null) hpPercentText.text = Mathf.RoundToInt(healthPercent * 100f) + "%";
 
         if (fillImage != null)
         {
-            if (healthPercent > 0.6f)
-                fillImage.color = highHealthColor;
-            else if (healthPercent > 0.3f)
-                fillImage.color = midHealthColor;
-            else
-                fillImage.color = lowHealthColor;
+            if (healthPercent > 0.6f) fillImage.color = highHealthColor;
+            else if (healthPercent > 0.3f) fillImage.color = midHealthColor;
+            else fillImage.color = lowHealthColor;
         }
     }
 
-    void GameOver()
+    IEnumerator EngineStallRoutine()
     {
-        GameOverManager manager = FindFirstObjectByType<GameOverManager>();
-        if (manager != null)
-            manager.ShowGameOver();
+        isStalled = true;
+
+        MonoBehaviour easyScript = GetComponent("SAT1Controller.SAT1EasyController") as MonoBehaviour;
+        MonoBehaviour hardScript = GetComponent("SAT1Controller.SAT1HardController") as MonoBehaviour;
+
+        MonoBehaviour activeScript = null;
+        if (easyScript != null && easyScript.enabled) activeScript = easyScript;
+        if (hardScript != null && hardScript.enabled) activeScript = hardScript;
+
+        if (activeScript != null) activeScript.enabled = false;
+
+        if (rb != null) rb.linearVelocity = Vector3.zero;
+
+        yield return new WaitForSeconds(4f);
+
+        if (activeScript != null) activeScript.enabled = true;
+
+        currentHP = maxHP * 0.5f;
+        
+        isGracePeriodActive = true; 
+        isStalled = false;
+        UpdateUI();
+
+        yield return new WaitForSeconds(3f);
+        
+        isGracePeriodActive = false; 
     }
 
-    // --- NEW: The 10-second real-time grace period routine ---
     IEnumerator GracePeriodRoutine()
     {
         yield return new WaitForSecondsRealtime(12f);

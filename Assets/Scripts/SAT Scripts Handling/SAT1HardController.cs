@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro; // 🔥 ADDED: For the Canvas Speedometer
 
 namespace SAT1Controller
 {
@@ -21,6 +22,10 @@ namespace SAT1Controller
 
         [Header("Impact Settings")]
         public float heavyStunDuration = 3f;
+
+        [Header("UI Elements")]
+        public TextMeshProUGUI speedText; // 🔥 ADDED: Drag your Canvas Speed text here!
+        public float uiSpeedMultiplier = 2.237f; // 🔥 ADDED: Set to 2.237 for literal MPH, or crank it up to 5 for an Arcade feel!
 
         [Header("Wheel Colliders")]
         public WheelCollider frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel;
@@ -44,6 +49,16 @@ namespace SAT1Controller
             rb.linearDamping = 0.015f;
             rb.angularDamping = 0.2f; // less stability
             rb.centerOfMass = new Vector3(0, -0.35f, 0);
+        }
+
+        // 🔥 ADDED: The Update method for the Speedometer
+        void Update()
+        {
+            if (speedText != null && rb != null)
+            {
+                int displaySpeed = Mathf.RoundToInt(rb.linearVelocity.magnitude * uiSpeedMultiplier);
+                speedText.text = "Speed: " + displaySpeed.ToString() + " MPH";
+            }
         }
 
         void FixedUpdate()
@@ -227,6 +242,12 @@ namespace SAT1Controller
                 {
                     rb.linearVelocity *= 0.7f;
                     rb.angularVelocity += Random.insideUnitSphere * 2f; // destabilize
+                }
+                else 
+                {
+                    // 🔥 UPDATED: All other obstacles! (Types 3-9)
+                    rb.linearVelocity *= 0.65f; // Hard Mode: 35% speed penalty!
+                    rb.angularVelocity += Random.insideUnitSphere * 1.5f; // Adds a slight wobble so it feels like a real bump
                 }
             }
             else if (other.gameObject.CompareTag("Obstacle"))

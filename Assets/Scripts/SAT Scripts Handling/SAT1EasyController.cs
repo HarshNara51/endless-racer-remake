@@ -209,7 +209,12 @@ namespace SAT1Controller
                 }
                 else if (hitObstacle.obstacleType == 1) 
                 {
-                    rb.linearVelocity *= 0.6f; 
+                    rb.linearVelocity *= 0.6f; // Cones: 40% speed penalty
+                }
+                else 
+                {
+                    // 🔥 NEW: All other obstacles! (Barrels, barricades, logs)
+                    rb.linearVelocity *= 0.8f; // Minor 20% speed penalty so it feels like a bump!
                 }
             }
             else if (other.gameObject.CompareTag("Obstacle")) 

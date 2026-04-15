@@ -5,7 +5,6 @@ public class Obstacle : MonoBehaviour
 {
     [Header("Core Settings")]
     public int obstacleType;
-    public int baseDamage = 5;
 
     [Header("Physics Impact")]
     public float sideForce = 8f;
@@ -13,77 +12,61 @@ public class Obstacle : MonoBehaviour
     public float spinForce = 5f;
 
     private Rigidbody rb;
-    private Collider col; // 🔥 We need this to control the Trigger!
+    private Collider col; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         
-        // Freeze them in place so they don't fall
         rb.useGravity = false;
         rb.isKinematic = true;
 
-        // 🔥 THE BRICK WALL FIX: Force them to be triggers at start!
-        // Now you will safely pass into them from EVERY angle.
         if (col != null) col.isTrigger = true; 
-
-        AssignDamageBasedOnType();
-    }
-
-    void AssignDamageBasedOnType()
-    {
-        switch (obstacleType)
-        {
-            case 1: baseDamage = 5; break; 
-            case 2: baseDamage = 15; break;
-            case 3: baseDamage = 8; break; 
-            case 4: case 5: baseDamage = 10; break; 
-            case 6: case 7: case 8: case 9: baseDamage = 12; break; 
-        }
     }
 
     public void Collision(GameObject player)
     {
-        PlayerCollisionHandler playerHandler = player.GetComponent<PlayerCollisionHandler>();
-
+        // 1. Run the Physics Reactions
         switch (obstacleType)
         {
             case 1: 
-                if (playerHandler != null) playerHandler.Stun(1f);
                 YeetObject(1f, 1f, player);
                 break;
             case 2: 
-                if (playerHandler != null) playerHandler.Stun(2f);
+                // Heavy object (Bulldozer) - physics handled entirely by the car bouncing off
                 break;
             case 3: 
             case 6: 
-                if (playerHandler != null) playerHandler.Stun(1.2f);
                 RollObject(player);
                 break;
             case 4: 
             case 5: 
-                if (playerHandler != null) playerHandler.Stun(1.2f);
                 PushObject(2f, player);
                 break;
             case 7: 
             case 8: 
             case 9: 
-                if (playerHandler != null) playerHandler.Stun(1.5f);
                 PushObject(2.5f, player);
                 break;
         }
 
+        // 2. Trigger the UI Pop-up
         if (HitUIManager.Instance != null)
         {
             string cleanName = gameObject.name.Replace("(Clone)", "").Trim();
             HitUIManager.Instance.RegisterHit(cleanName + "!");
         }
+
+        // 3. Silently log the hit for the Thesis Experiment Data
+        if (ThesisGameManager.Instance != null)
+        {
+            ThesisGameManager.Instance.RegisterObstacleHit();
+        }
     }
 
-    // ---------- PHYSICS REACTIONS ----------
+    // ---------- PHYSICS REACTIONS (Phase Shift Included) ----------
 
-    // 🔥 THE NEW MAGIC METHOD
     void PrepareForImpact(GameObject player)
     {
         rb.isKinematic = false;
@@ -91,25 +74,30 @@ public class Obstacle : MonoBehaviour
 
         if (col != null)
         {
-            // 1. THE SINKING FIX: Make it solid so it bounces on the asphalt!
-            col.isTrigger = false;
+            Invoke("MakeSolid", 0.15f); // Phase shift to prevent car launching!
 
-            // 2. THE EXPLOSION FIX: Tell this object to permanently ignore the car's physics.
-            // This stops the car from flipping over when the object suddenly becomes solid!
             Collider[] playerColliders = player.GetComponentsInChildren<Collider>();
             foreach (Collider pCol in playerColliders)
             {
-                Physics.IgnoreCollision(col, pCol);
+                if (pCol.GetType() != typeof(WheelCollider))
+                {
+                    Physics.IgnoreCollision(col, pCol);
+                }
             }
         }
     }
 
+    void MakeSolid()
+    {
+        if (col != null) col.isTrigger = false;
+    }
+
     void YeetObject(float sideMul, float upMul, GameObject player)
     {
-        PrepareForImpact(player); // 🔥 Run the magic trick!
+        PrepareForImpact(player); 
         
         Vector3 pushDirection = (transform.position - player.transform.position).normalized;
-        pushDirection.y = 0.5f; // Tiny upward pop to clear the bumper
+        pushDirection.y = 0.5f; 
         Vector3 force = (pushDirection * sideForce * sideMul) + (Vector3.up * upwardForce * upMul);
         
         rb.AddForce(force, ForceMode.Impulse);
@@ -118,10 +106,10 @@ public class Obstacle : MonoBehaviour
 
     void PushObject(float strength, GameObject player)
     {
-        PrepareForImpact(player); // 🔥 Run the magic trick!
+        PrepareForImpact(player); 
         
         Vector3 pushDirection = (transform.position - player.transform.position).normalized;
-        pushDirection.y = 0.5f; // Tiny upward pop to clear the bumper
+        pushDirection.y = 0.5f; 
         Vector3 force = pushDirection * sideForce * strength;
         
         rb.AddForce(force, ForceMode.Impulse);
@@ -129,7 +117,7 @@ public class Obstacle : MonoBehaviour
 
     void RollObject(GameObject player)
     {
-        PrepareForImpact(player); // 🔥 Run the magic trick!
+        PrepareForImpact(player); 
         
         Vector3 pushDirection = (transform.position - player.transform.position).normalized;
         pushDirection.y = 0.2f;
