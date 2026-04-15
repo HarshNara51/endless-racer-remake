@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro; // 🔥 Added for the UI Speedometer!
 
 namespace SAT1Controller
 {
@@ -17,6 +18,9 @@ namespace SAT1Controller
 
         [Header("Impact Settings")]
         public float heavyStunDuration = 3f; 
+
+        [Header("UI Elements")]
+        public TextMeshProUGUI speedText; // 🔥 Drag your Canvas Speed text here!
 
         [Header("Wheel Colliders")]
         public WheelCollider frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel;
@@ -36,6 +40,17 @@ namespace SAT1Controller
             rb.linearDamping = 0.02f; 
             rb.angularDamping = 0.5f; 
             rb.centerOfMass = new Vector3(0, -0.4f, 0); 
+        }
+
+        void Update()
+        {
+            // 🔥 The Speedometer Update!
+            if (speedText != null && rb != null)
+            {
+                // Multiply by 3.6 to convert Unity's m/s into KM/H
+                int displaySpeed = Mathf.RoundToInt(rb.linearVelocity.magnitude * 2.237f);
+                speedText.text = "Speed: " + displaySpeed.ToString();
+            }
         }
 
         void FixedUpdate()
