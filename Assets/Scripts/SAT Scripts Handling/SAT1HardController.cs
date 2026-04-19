@@ -169,21 +169,16 @@ namespace SAT1Controller
             if (Input.GetKey(KeyCode.Space))
             {
                 isBraking = true;
-
-                // Brake delay (NEW)
                 currentBrakeForce = Mathf.Lerp(currentBrakeForce, brakeForce, Time.fixedDeltaTime * brakeResponse);
-
                 ApplyBrake(currentBrakeForce);
-
-                // destabilize slightly
-                rb.angularVelocity *= 0.97f;
+                rb.angularVelocity *= 0.97f; // destabilize slightly
             }
             else
             {
+                // 🔥 THE FIX: Hard reset the brakes instead of smoothly mathing them down!
                 isBraking = false;
-
-                currentBrakeForce = Mathf.Lerp(currentBrakeForce, 0, Time.fixedDeltaTime * brakeResponse);
-                ApplyBrake(currentBrakeForce);
+                currentBrakeForce = 0f;
+                ResetBrakes();
             }
         }
 
