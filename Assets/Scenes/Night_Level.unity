@@ -562,6 +562,11 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6566028748908409670, guid: cd0d6f19bca405b47ae738455de26177, type: 3}
   m_PrefabInstance: {fileID: 55145164}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &55145166 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3243309263832129650, guid: cd0d6f19bca405b47ae738455de26177, type: 3}
+  m_PrefabInstance: {fileID: 55145164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63628822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,7 +2920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1759469783}
+  - {fileID: 1948685407}
   - {fileID: 198941576}
   - {fileID: 1164433026}
   - {fileID: 314861869}
@@ -5759,86 +5764,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756254984}
   m_CullTransparentMesh: 1
---- !u!1 &1759469781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1759469783}
-  - component: {fileID: 1759469782}
-  m_Layer: 0
-  m_Name: RoadManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1759469782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759469781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67010ca4aafa10f41be1943f04c742dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThesisRoadSpawner
-  roadSequence:
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 5408307612148455822, guid: bf5f74f026366124abd5173bc131db6f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 7327571738113190490, guid: 1c6fbfdd387309e4db9d97d22a828516, type: 3}
-  - {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 7584492527275866758, guid: 19595883add1d984598b3ba468fdb5b9, type: 3}
-  - {fileID: 4058628554885848116, guid: 6cb907f44ac7f994da86f8aa58833982, type: 3}
-  - {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
-  - {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
-  - {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
-  - {fileID: 4058628554885848116, guid: 6cb907f44ac7f994da86f8aa58833982, type: 3}
-  - {fileID: 1355121364217057826, guid: e0f062d773cf93c4da63f0c30955b4f1, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
-  mapCenterPoint: {fileID: 1478220333}
-  mapBoundsSize: {x: 750, y: 750}
-  leftTurnPrefab: {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
-  rightTurnPrefab: {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
-  playerCar: {fileID: 729130565}
-  mainCamera: {fileID: 961739752}
-  initialTiles: 2
-  spawnDistance: 90
-  maxActiveTiles: 3
-  enableDebugLogs: 1
---- !u!4 &1759469783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759469781}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -336.40604, y: -4.9071302, z: -591.89465}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 683266941}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1783076764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6269,6 +6194,105 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941094401}
   m_CullTransparentMesh: 1
+--- !u!1 &1948685406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948685407}
+  - component: {fileID: 1948685408}
+  m_Layer: 0
+  m_Name: RoadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1948685407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948685406}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -336.40604, y: -4.9071302, z: -591.89465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683266941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948685408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948685406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67010ca4aafa10f41be1943f04c742dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThesisRoadSpawner
+  easyRoadSequence:
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 5408307612148455822, guid: bf5f74f026366124abd5173bc131db6f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 7327571738113190490, guid: 1c6fbfdd387309e4db9d97d22a828516, type: 3}
+  - {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 7584492527275866758, guid: 19595883add1d984598b3ba468fdb5b9, type: 3}
+  - {fileID: 4058628554885848116, guid: 6cb907f44ac7f994da86f8aa58833982, type: 3}
+  - {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
+  - {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 622161187429420433, guid: 0b529b9ca2222ab4e8b16196eac1276f, type: 3}
+  - {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
+  - {fileID: 1355121364217057826, guid: e0f062d773cf93c4da63f0c30955b4f1, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  - {fileID: 6522143871629732459, guid: 6653ac675d90aa94fadd4c043e5b5576, type: 3}
+  easyLeftTurnPrefab: {fileID: 9223026020155942242, guid: 5e44c1767da66dd4c93bf3cb99586a90, type: 3}
+  easyRightTurnPrefab: {fileID: 687159399550519153, guid: aa35c152dea87b749a8f9fb3cc0a888e, type: 3}
+  hardRoadSequence:
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 5483720597041407542, guid: a9a9d7a379cbfad45b5856f4b2f717e1, type: 3}
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 9173152592289039807, guid: ca59e559d85b27c449b62b6166693715, type: 3}
+  - {fileID: 7760201573761632248, guid: 9e6535afeec3f4545956f36dba9ced87, type: 3}
+  - {fileID: 3105023723293389952, guid: 362058629b18e864ca2ab06eed3d0db9, type: 3}
+  - {fileID: 2569601329975323374, guid: d00bf34b32aed2540a01f9261afc74af, type: 3}
+  - {fileID: 3105023723293389952, guid: 362058629b18e864ca2ab06eed3d0db9, type: 3}
+  - {fileID: 3105023723293389952, guid: 362058629b18e864ca2ab06eed3d0db9, type: 3}
+  - {fileID: 3105023723293389952, guid: 362058629b18e864ca2ab06eed3d0db9, type: 3}
+  - {fileID: 819096584378305476, guid: 7bf67d3cf9ba65e4985d75ea12c7ff37, type: 3}
+  - {fileID: 1837168330010699234, guid: e4aae09beedd1ff44819d98303824331, type: 3}
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 4746209540833635249, guid: ed1a80efc9af27649bd9e1b2136c5090, type: 3}
+  - {fileID: 5196986562564206505, guid: b872b65a0065041429dfb219f9242818, type: 3}
+  hardLeftTurnPrefab: {fileID: 1837168330010699234, guid: e4aae09beedd1ff44819d98303824331, type: 3}
+  hardRightTurnPrefab: {fileID: 9173152592289039807, guid: ca59e559d85b27c449b62b6166693715, type: 3}
+  mapCenterPoint: {fileID: 1478220333}
+  mapBoundsSize: {x: 950, y: 950}
+  playerCar: {fileID: 55145166}
+  mainCamera: {fileID: 961739752}
+  initialTiles: 2
+  spawnDistance: 90
+  maxActiveTiles: 3
+  enableDebugLogs: 1
 --- !u!1 &2071491293
 GameObject:
   m_ObjectHideFlags: 0

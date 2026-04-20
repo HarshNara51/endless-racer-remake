@@ -3,16 +3,19 @@ using UnityEngine;
 
 public class ThesisRoadSpawner : MonoBehaviour
 {
-    [Header("Sequential Road Pattern (ORDER MATTERS)")]
-    public List<GameObject> roadSequence;
+    [Header("Easy Mode Roads (WIDE)")]
+    public List<GameObject> easyRoadSequence;
+    public GameObject easyLeftTurnPrefab;
+    public GameObject easyRightTurnPrefab;
+
+    [Header("Hard Mode Roads (SLIM)")]
+    public List<GameObject> hardRoadSequence;
+    public GameObject hardLeftTurnPrefab;
+    public GameObject hardRightTurnPrefab;
 
     [Header("Manual Bounds Protection")]
     public Transform mapCenterPoint; 
     public Vector2 mapBoundsSize = new Vector2(150f, 150f); 
-    
-    [Header("Emergency Steering Prefabs")]
-    public GameObject leftTurnPrefab;
-    public GameObject rightTurnPrefab;
 
     [Header("References")]
     public Transform playerCar;
@@ -23,12 +26,16 @@ public class ThesisRoadSpawner : MonoBehaviour
     public float spawnDistance = 15f;
 
     [Header("Destruction Settings")]
-    public int maxActiveTiles = 4; // Increase if roads vanish too early, decrease if overlap occurs
+    public int maxActiveTiles = 4; 
 
     [Header("Debug")]
     public bool enableDebugLogs = true;
 
-    // Runtime
+    // Runtime Tracking Variables
+    private List<GameObject> activeRoadSequence;
+    private GameObject activeLeftTurn;
+    private GameObject activeRightTurn;
+    
     private List<GameObject> activeTiles = new List<GameObject>();
     private Transform previousExitPoint;
     private bool gameStarted = false;
@@ -41,7 +48,30 @@ public class ThesisRoadSpawner : MonoBehaviour
 
     void Start()
     {
-        if (roadSequence == null || roadSequence.Count == 0) return;
+        // 🔥 THE MAGIC: Check the Singleton to see what difficulty the player chose!
+        bool isHard = GameSettings.Instance != null && GameSettings.Instance.isHardMode;
+        
+        if (isHard)
+        {
+            activeRoadSequence = hardRoadSequence;
+            activeLeftTurn = hardLeftTurnPrefab;
+            activeRightTurn = hardRightTurnPrefab;
+            if (enableDebugLogs) Debug.Log("[RoadSpawner] Loading HARD (Slim) Roads.");
+        }
+        else
+        {
+            activeRoadSequence = easyRoadSequence;
+            activeLeftTurn = easyLeftTurnPrefab;
+            activeRightTurn = easyRightTurnPrefab;
+            if (enableDebugLogs) Debug.Log("[RoadSpawner] Loading EASY (Wide) Roads.");
+        }
+
+        if (activeRoadSequence == null || activeRoadSequence.Count == 0) 
+        {
+            Debug.LogError("⚠️ [RoadSpawner] Missing Road Sequence Prefabs!");
+            return;
+        }
+
         SpawnFirstTile();
         for (int i = 0; i < initialTiles; i++) SpawnNextTile();
     }
@@ -62,7 +92,7 @@ public class ThesisRoadSpawner : MonoBehaviour
 
     void SpawnFirstTile()
     {
-        GameObject tile = Instantiate(roadSequence[0]);
+        GameObject tile = Instantiate(activeRoadSequence[0]);
         tile.transform.position = Vector3.zero;
         tile.transform.rotation = Quaternion.identity;
 
@@ -72,9 +102,9 @@ public class ThesisRoadSpawner : MonoBehaviour
 
     void SpawnNextTile()
     {
-        if (sequenceIndex >= roadSequence.Count) sequenceIndex = 0;
+        if (sequenceIndex >= activeRoadSequence.Count) sequenceIndex = 0;
 
-        GameObject plannedPrefab = roadSequence[sequenceIndex];
+        GameObject plannedPrefab = activeRoadSequence[sequenceIndex];
         GameObject tile = Instantiate(plannedPrefab);
         AlignTile(tile);
 
@@ -90,8 +120,7 @@ public class ThesisRoadSpawner : MonoBehaviour
         }
         else
         {
-            // Only progress the sequence if the piece was safe
-            sequenceIndex++;
+            sequenceIndex++; // Only progress sequence if it wasn't an emergency turn
         }
 
         FinalizeTile(tile);
@@ -117,8 +146,6 @@ public class ThesisRoadSpawner : MonoBehaviour
         tile.transform.position += offset;
     }
 
-    // ===================== UPGRADED BOUNDS CHECKING =====================
-
     bool NeedsEmergencyTurn(GameObject tile)
     {
         if (mapCenterPoint == null) return false;
@@ -136,14 +163,11 @@ public class ThesisRoadSpawner : MonoBehaviour
 
         if (isOutsideWarningZone)
         {
-            // We crossed the red line! Are we facing the center of the map yet?
             Vector3 directionToCenter = (center - checkPos).normalized;
             Vector3 tileForward = exit != null ? exit.forward : tile.transform.forward;
 
-            // Dot Product checks alignment: 1 is perfectly facing, -1 is facing away
             float alignmentToCenter = Vector3.Dot(tileForward, directionToCenter);
 
-            // If the road isn't pointing strongly towards the center, reject it!
             if (alignmentToCenter < 0.4f) 
             {
                 return true; 
@@ -155,13 +179,13 @@ public class ThesisRoadSpawner : MonoBehaviour
 
     GameObject GetTurnTowardsCenter()
     {
-        if (mapCenterPoint == null) return leftTurnPrefab; 
+        if (mapCenterPoint == null) return activeLeftTurn; 
 
         Vector3 directionToCenter = (mapCenterPoint.position - previousExitPoint.position).normalized;
         float crossProductY = Vector3.Cross(previousExitPoint.forward, directionToCenter).y;
 
-        if (crossProductY > 0) return rightTurnPrefab;
-        else return leftTurnPrefab;
+        if (crossProductY > 0) return activeRightTurn;
+        else return activeLeftTurn;
     }
 
     void DestroyOldTiles()
